@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better.
 Name: less
 Version: 358
-Release: 27
+Release: 28
 License: GPL
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -66,6 +66,9 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Jun 21 2002 Tim Powers <timp@redhat.com>
+- automated rebuild
+
 * Tue Jun 18 2002 Karsten Hopp <karsten@redhat.de> 358-27
 - added Kazushi (Jam) Marukawa ISO-2022 patch 254 to support multibyte 
   characters
