@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better.
 Name: less
 Version: 358
-Release: 21
+Release: 24
 License: GPL
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -16,6 +16,8 @@ Patch3: less-358-eline.patch
 # Patch to fix things which the Japanese patch broke:
 Patch4: less-358-charset.patch
 Patch5: less-358-rh.patch
+# One more patch for the broken i18n patch
+Patch6: less-number.patch
 URL: http://www.greenwoodsoftware.com/less/
 Buildroot: %{_tmppath}/%{name}-root
 BuildRequires: ncurses-devel
@@ -33,10 +35,11 @@ files, and you'll use it frequently.
 %prep
 %setup -q
 %patch -p1 -b .bug
-%patch2 -p1 -b .i18n
+#%patch2 -p1 -b .i18n
 %patch3 -p1 -b .eline
-%patch4 -p1 -b .chset
-%patch5 -p1 -b .rh
+#%patch4 -p1 -b .chset
+#%patch5 -p1 -b .rh
+#%patch6 -p1 -b .num
 
 %build
 %configure
@@ -61,6 +64,13 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Jan 09 2002 Tim Powers <timp@redhat.com>
+- automated rebuild
+
+* Fri Oct 05 2001 Karsten Hopp <karsten@redhat.de>
+- fix line numbering (less -N filename), caused by
+  a broken i18n patch
+
 * Tue Sep 04 2001 Karsten Hopp <karsten@redhat.de>
 - recompile with large file support (#52945)
 
