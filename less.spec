@@ -1,10 +1,10 @@
 Summary: A text file browser similar to more, but better.
 Name: less
 Version: 358
-Release: 17
+Release: 19
 License: GPL
 Group: Applications/Text
-Source: http://www.flash.net/~marknu/less/%{name}-%{version}.tar.gz
+Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1: lesspipe.sh
 Source2: less.sh
 Source3: less.csh
@@ -12,8 +12,11 @@ Patch0: less-shell.patch
 Patch1: less-edit.patch
 # Japanese patch
 Patch2: less-358+iso247-20001210.diff
-Patch3: less-358-latin1.patch
-URL: http://www.flash.net/~marknu/less/
+Patch3: less-358-eline.patch
+# Patch to fix things which the Japanese patch broke:
+Patch4: less-358-charset.patch
+Patch5: less-358-rh.patch
+URL: http://www.greenwoodsoftware.com/less/
 Buildroot: %{_tmppath}/%{name}-root
 
 %description
@@ -30,7 +33,9 @@ files, and you'll use it frequently.
 %setup -q
 %patch -p1 -b .bug
 %patch2 -p1 -b .i18n
-%patch3 -p1 -b .lat1
+%patch3 -p1 -b .eline
+%patch4 -p1 -b .chset
+%patch5 -p1 -b .rh
 
 %build
 %configure
@@ -55,6 +60,17 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Jun 25 2001 Nalin Dahyabhai <nalin@redhat.com>
+- fixup eline patch to initialize result correctly
+
+* Mon Jun 25 2001 Karsten Hopp <karsten@redhat.de>
+- update URLs
+- Copyright -> License
+- fix #43348 (crashes when searching for /<)
+- fix #39849 (
+  _ ignores LESSCHARDEF in displaying characters,
+  _ prefaces sequences of one or "high" characters with a capital "A")
+
 * Mon Feb  5 2001 Yukihiro Nakai <ynakai@redhat.com>
 - Update less.sh, less.csh to set JLESSCHARSET=japanese
   when LANG=ja??
