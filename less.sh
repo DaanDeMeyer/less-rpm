@@ -3,5 +3,7 @@
 
 if [ x`echo $LANG | cut -b 1-2` = x"ja" ]; then
 	export JLESSCHARSET=japanese;
+elif [ x`echo $LANG | cut -b 1-2` = x"ko" ]; then
+	export JLESSCHARSET=ko;
 fi
 

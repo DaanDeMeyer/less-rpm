@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better.
 Name: less
 Version: 358
-Release: 16
+Release: 17
 License: GPL
 Group: Applications/Text
 Source: http://www.flash.net/~marknu/less/%{name}-%{version}.tar.gz
