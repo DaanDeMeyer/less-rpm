@@ -28,6 +28,19 @@ lesspipe() {
   *.zip) zipinfo -- "$1" ;;
   *.rpm) rpm -qpivl --changelog -- "$1" ;;
   *.cpi|*.cpio) cpio -itv < "$1" ;;
+  *.gif|*.jpeg|*.jpg|*.pcd|*.png|*.tga|*.tiff|*.tif)
+   if [ -x "`which identify`" ]; then
+     identify "$1"
+   else
+     echo "No identify available"
+     echo "Install ImageMagick to browse images"
+   fi ;;
+  *)
+	case "$1" in
+		*.gz)	DECOMPRESSOR="gunzip -c" ;;
+		*.bz2)	DECOMPRESSOR="bunzip2 -c" ;;
+	esac
+	$DECOMPRESSOR -- "$1" ;;
   esac
 }
 

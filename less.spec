@@ -1,24 +1,19 @@
 Summary: A text file browser similar to more, but better.
 Name: less
-Version: 358
-Release: 28
+Version: 378
+Release: 7
 License: GPL
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1: lesspipe.sh
 Source2: less.sh
 Source3: less.csh
-Patch0: less-shell.patch
-Patch1: less-edit.patch
-# Japanese patch
-Patch2: less-358-iso254.patch
-Patch3: less-358-eline.patch
-# Patch to fix things which the Japanese patch broke:
-Patch4: less-358-charset.patch
-Patch5: less-358-rh.patch
-# One more patch for the broken i18n patch
-Patch6: less-number.patch
-Patch7: less-358-mf.patch
+
+# Patches for less-378
+Patch0: less-378-rh1.patch
+Patch1: less-378+iso247-20030108.diff
+Patch2: less-378-multibyte.patch
+
 URL: http://www.greenwoodsoftware.com/less/
 Buildroot: %{_tmppath}/%{name}-root
 BuildRequires: ncurses-devel
@@ -35,13 +30,10 @@ files, and you'll use it frequently.
 
 %prep
 %setup -q
-%patch -p1 -b .bug
-%patch2 -p1 -b .i18n
-#%patch3 -p1 -b .eline
-%patch4 -p1 -b .chset
-#%patch5 -p1 -b .rh
-#%patch6 -p1 -b .num
-%patch7 -p1 -b .mf
+%patch0 -p1 -b .rh1
+%patch1 -p1 -b .jp
+%patch2 -p1 -b .multibyte
+chmod -R a+w *
 
 %build
 %configure
@@ -66,28 +58,31 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Fri Jun 21 2002 Tim Powers <timp@redhat.com>
-- automated rebuild
+* Tue Feb  4 2003 Tim Waugh <twaugh@redhat.com> 378-7
+- Part of multibyte patch was missing; fixed.
 
-* Tue Jun 18 2002 Karsten Hopp <karsten@redhat.de> 358-27
-- added Kazushi (Jam) Marukawa ISO-2022 patch 254 to support multibyte 
-  characters
-- added Mike Fabians patch to fix bold/underlined non-ASCII 
-  characters in UTF-8 mode
-- finally added support for directories (#17456 and #62050)
-- re-enabled fallback if no charset could be found (#24463)
-- added Matt's fix for #26113
-- show changelog and filelist when viewing a rpm package (#64900)
+* Mon Feb  3 2003 Tim Waugh <twaugh@redhat.com> 378-6
+- Fix underlining multibyte characters (bug #83377).
 
+* Thu Jan 30 2003 Karsten Hopp <karsten@redhat.de> 378-5
+- removed older, unused patches
+- add patch from Yukihiro Nakai to fix display of japanese text
+  (#79977)
 
-* Thu May 23 2002 Tim Powers <timp@redhat.com>
-- automated rebuild
+* Wed Jan 22 2003 Tim Powers <timp@redhat.com>
+- rebuilt
 
-* Thu Apr 25 2002 Than Ngo <than@redhat.com> 358-25
-- add fix to handle tar.bz2 file
+* Wed Dec 18 2002 Karsten Hopp <karsten@redhat.de>č
+- removed default 'cat' from lesspipe.sh as it breaks 'v' and 'F' keys 
+  (#79921)
 
-* Wed Jan 09 2002 Tim Powers <timp@redhat.com>
-- automated rebuild
+* Fri Dec  6 2002 Nalin Dahyabhai <nalin@redhat.com> 378-2
+- add a default case to lesspipe so that it shows other kinds of files
+
+* Mon Nov 04 2002 Karsten Hopp <karsten@redhat.de>
+- less-378
+- added some debian patches
+- show image info instead of binary garbage when viewing images
 
 * Fri Oct 05 2001 Karsten Hopp <karsten@redhat.de>
 - fix line numbering (less -N filename), caused by
