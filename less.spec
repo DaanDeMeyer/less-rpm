@@ -1,7 +1,9 @@
+%define enable_japanese 1
+
 Summary: A text file browser similar to more, but better.
 Name: less
 Version: 358
-Release: 7
+Release: 7j1
 License: GPL
 Group: Applications/Text
 Source: http://www.flash.net/~marknu/less/%{name}-%{version}.tar.gz
@@ -9,6 +11,10 @@ Source1: lesspipe.sh
 Source2: less.sh
 Source3: less.csh
 Patch: less-shell.patch
+# Japanese patch
+# http://home.jp.FreeBSD.org/~kuriyama/less-358+iso247-20000803.diff.gz
+Patch10: less-358+iso247-20000803.diff
+
 URL: http://www.flash.net/~marknu/less/
 Buildroot: /var/tmp/less-root
 
@@ -25,6 +31,10 @@ files, and you'll use it frequently.
 %prep
 %setup -q
 %patch -p1 -b .bug
+%if %{enable_japanese}
+cd $RPM_BUILD_DIR/less-358/
+%patch10 -b .i18n
+%endif
 
 %build
 %configure
@@ -49,6 +59,9 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Aug 29 2000 Yukihiro Nakai <ynakai@redhat.com>
+- Add Japanese patch
+
 * Wed Aug 23 2000 Bernhard Rosenkraenzer <bero@redhat.com>
 - support files with spaces in their names (Bug #16777)
 
