@@ -1,22 +1,20 @@
-%define enable_japanese 1
-
 Summary: A text file browser similar to more, but better.
 Name: less
 Version: 358
-Release: 7j1
+Release: 16
 License: GPL
 Group: Applications/Text
 Source: http://www.flash.net/~marknu/less/%{name}-%{version}.tar.gz
 Source1: lesspipe.sh
 Source2: less.sh
 Source3: less.csh
-Patch: less-shell.patch
+Patch0: less-shell.patch
+Patch1: less-edit.patch
 # Japanese patch
-# http://home.jp.FreeBSD.org/~kuriyama/less-358+iso247-20000803.diff.gz
-Patch10: less-358+iso247-20000803.diff
-
+Patch2: less-358+iso247-20001210.diff
+Patch3: less-358-latin1.patch
 URL: http://www.flash.net/~marknu/less/
-Buildroot: /var/tmp/less-root
+Buildroot: %{_tmppath}/%{name}-root
 
 %description
 The less utility is a text file browser that resembles more, but has
@@ -31,10 +29,8 @@ files, and you'll use it frequently.
 %prep
 %setup -q
 %patch -p1 -b .bug
-%if %{enable_japanese}
-cd $RPM_BUILD_DIR/less-358/
-%patch10 -b .i18n
-%endif
+%patch2 -p1 -b .i18n
+%patch3 -p1 -b .lat1
 
 %build
 %configure
@@ -59,8 +55,36 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Tue Aug 29 2000 Yukihiro Nakai <ynakai@redhat.com>
-- Add Japanese patch
+* Mon Feb  5 2001 Yukihiro Nakai <ynakai@redhat.com>
+- Update less.sh, less.csh to set JLESSCHARSET=japanese
+  when LANG=ja??
+
+* Mon Feb  5 2001 Matt Wilson <msw@redhat.com>
+- changed the less-358+iso247-20001210.diff patch to use strcasecmp when
+  comparing locale names
+
+* Thu Feb 01 2001 Karsten Hopp <karsten@redhat.de>
+- fixed character translations (bugzilla #24463)
+
+* Wed Jan 31 2001 Karsten Hopp <karsten@redhat.de>
+- fixed lesspipe (bugzilla #17456 #25324)
+
+* Tue Dec 12 2000 Bernhard Rosenkraenzer <bero@redhat.com>
+- rebuild with new ncurses
+
+* Mon Dec 11 2000 Yukihiro Nakai <ynakai@redhat.com>
+- Add Japanese patch with ia64 support.
+
+* Mon Nov 27 2000 Karsten Hopp <karsten@redhat.de>
+- rebuild with new ncurses
+- fix Bug #21288
+
+* Mon Nov 13 2000 Karsten Hopp <karsten@redhat.de>
+- fixed handling of manpages of type *.1x.gz
+- added support for cpio packages
+
+* Thu Sep 14 2000 Than Ngo <than@redhat.com>
+- added new lesspipe.sh (Bug #17456)
 
 * Wed Aug 23 2000 Bernhard Rosenkraenzer <bero@redhat.com>
 - support files with spaces in their names (Bug #16777)
