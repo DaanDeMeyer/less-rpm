@@ -22,13 +22,17 @@ lesspipe() {
 	fi ;;
   *.tar) tar tvvf "$1" ;;
   *.tgz|*.tar.gz|*.tar.[zZ]) tar tzvvf "$1" ;;
-  *.tar.bz2|*.tbz2) tar tIvvf "$1" ;;
+  *.tar.bz2|*.tbz2) bzip2 -dc "$1" | tar tvvf - ;;
   *.[zZ]|*.gz) gzip -dc -- "$1" ;;
   *.bz2) bzip2 -dc -- "$1" ;;
   *.zip) zipinfo -- "$1" ;;
-  *.rpm) rpm -qpivl -- "$1" ;;
+  *.rpm) rpm -qpivl --changelog -- "$1" ;;
   *.cpi|*.cpio) cpio -itv < "$1" ;;
   esac
 }
 
-lesspipe "$1" 2> /dev/null
+if [ -d "$1" ] ; then
+	/bin/ls -alF -- "$1"
+else
+	lesspipe "$1" 2> /dev/null
+fi
