@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better.
 Name: less
 Version: 358
-Release: 19
+Release: 20
 License: GPL
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -18,6 +18,7 @@ Patch4: less-358-charset.patch
 Patch5: less-358-rh.patch
 URL: http://www.greenwoodsoftware.com/less/
 Buildroot: %{_tmppath}/%{name}-root
+BuildRequires: ncurses-devel
 
 %description
 The less utility is a text file browser that resembles more, but has
@@ -60,6 +61,9 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Jul 24 2001 Karsten Hopp <karsten@redhat.de>
+- fix #49506 (BuildRequires)
+
 * Mon Jun 25 2001 Nalin Dahyabhai <nalin@redhat.com>
 - fixup eline patch to initialize result correctly
 
