@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better.
 Name: less
 Version: 382
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -53,6 +53,9 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Jun 15 2004 Elliot Lee <sopwith@redhat.com>
+- rebuilt
+
 * Mon Mar 29 2004 Karsten Hopp <karsten@redhat.de> 382-3
 - remove old stuff from /etc/profile.d/less.*, fixes #109011
 
