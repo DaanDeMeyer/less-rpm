@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better.
 Name: less
-Version: 378
-Release: 11.1
+Version: 381
+Release: 2
 License: GPL
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -10,11 +10,7 @@ Source2: less.sh
 Source3: less.csh
 
 # Patches for less-378
-Patch0: less-378-rh1.patch
-Patch1: less-378+iso247-20030108.diff
-Patch2: less-378-multibyte.patch
-Patch3: less-378-ko.patch
-Patch4: less-378-ncursesw.patch
+Patch0: less-381+iso247-20030611.diff
 
 URL: http://www.greenwoodsoftware.com/less/
 Buildroot: %{_tmppath}/%{name}-root
@@ -32,15 +28,10 @@ files, and you'll use it frequently.
 
 %prep
 %setup -q
-%patch0 -p1 -b .rh1
-%patch1 -p1 -b .jp
-%patch2 -p1 -b .multibyte
-%patch3 -p1
-%patch4 -p1 -b .ncursesw
+#%patch0 -p1 -b .iso247
 chmod -R a+w *
 
 %build
-autoconf
 %configure
 make CC="gcc $RPM_OPT_FLAGS -D_GNU_SOURCE -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64" datadir=%{_docdir}
 
@@ -63,14 +54,11 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Mon Sep 01 2003 Karsten Hopp <karsten@redhat.de> 378-11.1
-- rebuilt
+* Thu Jan 15 2004 Karsten Hopp <karsten@redhat.de> 381-2 
+- drop iso247 patch, doesn't work
 
-* Mon Sep 01 2003 Karsten Hopp <karsten@redhat.de> 378-11
-- use LC_ALL when set (lang.[c]sh)
-
-* Mon Aug 11 2003 Karsten Hopp <karsten@redhat.de> 378-10.1
-- link against ncursesw if available
+* Wed Jun 11 2003 Karsten Hopp <karsten@redhat.de> 381-1
+- new version with rewritten iso247 patch
 
 * Wed Jun 04 2003 Elliot Lee <sopwith@redhat.com>
 - rebuilt
