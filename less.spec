@@ -1,6 +1,6 @@
 Summary: A text file browser similar to more, but better.
 Name: less
-Version: 381
+Version: 382
 Release: 2
 License: GPL
 Group: Applications/Text
@@ -9,8 +9,7 @@ Source1: lesspipe.sh
 Source2: less.sh
 Source3: less.csh
 
-# Patches for less-378
-Patch0: less-381+iso247-20030611.diff
+Patch0:	less-382-ncursesw.patch
 
 URL: http://www.greenwoodsoftware.com/less/
 Buildroot: %{_tmppath}/%{name}-root
@@ -28,7 +27,7 @@ files, and you'll use it frequently.
 
 %prep
 %setup -q
-#%patch0 -p1 -b .iso247
+%patch0 -p1 -b .ncursesw
 chmod -R a+w *
 
 %build
@@ -54,6 +53,15 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Mar 02 2004 Karsten Hopp <karsten@redhat.de> 382-2 
+- use ncursesw if available
+
+* Sat Feb 14 2004 Karsten Hopp <karsten@redhat.de> 382-1
+- new upstream version
+
+* Fri Feb 13 2004 Elliot Lee <sopwith@redhat.com>
+- rebuilt
+
 * Thu Jan 15 2004 Karsten Hopp <karsten@redhat.de> 381-2 
 - drop iso247 patch, doesn't work
 
