@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better.
 Name: less
 Version: 382
-Release: 6
+Release: 7
 License: GPL
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -55,6 +55,9 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Mar  4 2005 Jindrich Novy <jnovy@redhat.com> 382-7
+- rebuilt with gcc4
+
 * Wed Feb 16 2005 Jindrich Novy <jnovy@redhat.com> 382-6
 - add patch for proper detection of UTF-8 locale,
   patch from Peter Rockai
