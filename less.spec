@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better.
 Name: less
 Version: 378
-Release: 7
+Release: 11.1
 License: GPL
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -13,6 +13,8 @@ Source3: less.csh
 Patch0: less-378-rh1.patch
 Patch1: less-378+iso247-20030108.diff
 Patch2: less-378-multibyte.patch
+Patch3: less-378-ko.patch
+Patch4: less-378-ncursesw.patch
 
 URL: http://www.greenwoodsoftware.com/less/
 Buildroot: %{_tmppath}/%{name}-root
@@ -33,9 +35,12 @@ files, and you'll use it frequently.
 %patch0 -p1 -b .rh1
 %patch1 -p1 -b .jp
 %patch2 -p1 -b .multibyte
+%patch3 -p1
+%patch4 -p1 -b .ncursesw
 chmod -R a+w *
 
 %build
+autoconf
 %configure
 make CC="gcc $RPM_OPT_FLAGS -D_GNU_SOURCE -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64" datadir=%{_docdir}
 
@@ -58,6 +63,23 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Sep 01 2003 Karsten Hopp <karsten@redhat.de> 378-11.1
+- rebuilt
+
+* Mon Sep 01 2003 Karsten Hopp <karsten@redhat.de> 378-11
+- use LC_ALL when set (lang.[c]sh)
+
+* Mon Aug 11 2003 Karsten Hopp <karsten@redhat.de> 378-10.1
+- link against ncursesw if available
+
+* Wed Jun 04 2003 Elliot Lee <sopwith@redhat.com>
+- rebuilt
+
+* Wed May 28 2003 Florian La Roche <Florian.LaRoche@redhat.de>
+- fix korean #79977
+- add new less.sh from #89780, s/ko/korean/ and write .csh script
+- add patch from #91661: /japanses/japanese-euc/
+
 * Tue Feb  4 2003 Tim Waugh <twaugh@redhat.com> 378-7
 - Part of multibyte patch was missing; fixed.
 

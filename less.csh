@@ -3,10 +3,17 @@ if ( -x /usr/bin/lesspipe.sh ) then
   setenv LESSOPEN "|/usr/bin/lesspipe.sh %s"
 endif
 
-if ( $?LANG ) then
-  if ( `echo $LANG | cut -b 1-2` == "ja" ) then
-    setenv JLESSCHARSET japanese
-  else if ( `echo $LANG | cut -b 1-2` == "ko" ) then
-    setenv JLESSCHARSET ko
-  endif
+if ( $?LC_ALL ) then
+  setenv LANGVAR $LC_ALL
+else
+  setenv LANGVAR $LANG
 endif
+
+
+if ( `echo $LANGVAR | cut -b 7- | tr -s "[:lower:]" "[:upper:]"` == "EUCJP" ) then
+    setenv JLESSCHARSET japanese-euc
+  else 
+    if ( `echo $LANGVAR | cut -b 7- | tr -s "[:lower:]" "[:upper:]"` == "EUCKR" ) then
+       setenv JLESSCHARSET korean
+    endif
+  endif
