@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better.
 Name: less
 Version: 358
-Release: 20
+Release: 21
 License: GPL
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -40,7 +40,7 @@ files, and you'll use it frequently.
 
 %build
 %configure
-make CC="gcc $RPM_OPT_FLAGS" datadir=%{_docdir}
+make CC="gcc $RPM_OPT_FLAGS -D_GNU_SOURCE -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64" datadir=%{_docdir}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -61,6 +61,9 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Sep 04 2001 Karsten Hopp <karsten@redhat.de>
+- recompile with large file support (#52945)
+
 * Tue Jul 24 2001 Karsten Hopp <karsten@redhat.de>
 - fix #49506 (BuildRequires)
 
