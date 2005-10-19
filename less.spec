@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better.
 Name: less
-Version: 382
-Release: 8
+Version: 392
+Release: 1
 License: GPL
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -9,9 +9,7 @@ Source1: lesspipe.sh
 Source2: less.sh
 Source3: less.csh
 
-Patch0:	less-382-ncursesw.patch
-Patch1:	less-382-utf8detect.patch
-Patch2:	less-382-fixline.patch
+Patch0:	less-382-fixline.patch
 
 URL: http://www.greenwoodsoftware.com/less/
 Buildroot: %{_tmppath}/%{name}-root
@@ -29,9 +27,7 @@ files, and you'll use it frequently.
 
 %prep
 %setup -q
-%patch0 -p1 -b .ncursesw
-%patch1 -p1 -b .utf8detect
-%patch2 -p1 -b .fixline
+%patch0 -p1 -b .fixline
 chmod -R a+w *
 
 %build
@@ -57,6 +53,9 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Oct 19 2005 Jindrich Novy <jnovy@redhat.com> 392-1
+- update to less-392 - fixes #122847 and enhances UTF8 support
+
 * Fri Sep  2 2005 Jindrich Novy <jnovy@redhat.com> 382-8
 - fix displaying of bogus newline for growing files (#120916)
 
