@@ -1,15 +1,15 @@
 Summary: A text file browser similar to more, but better.
 Name: less
 Version: 392
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1: lesspipe.sh
 Source2: less.sh
 Source3: less.csh
-
 Patch0:	less-382-fixline.patch
+Patch1:	less-392-Foption.patch
 
 URL: http://www.greenwoodsoftware.com/less/
 Buildroot: %{_tmppath}/%{name}-root
@@ -28,6 +28,7 @@ files, and you'll use it frequently.
 %prep
 %setup -q
 %patch0 -p1 -b .fixline
+%patch1 -p1 -b .Foption
 chmod -R a+w *
 
 %build
@@ -53,6 +54,9 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Oct 21 2005 Jindrich Novy <jnovy@redhat.com> 392-2
+- fix the -F option (#79650), thanks to Petr Raszyk
+
 * Wed Oct 19 2005 Jindrich Novy <jnovy@redhat.com> 392-1
 - update to less-392 - fixes #122847 and enhances UTF8 support
 
