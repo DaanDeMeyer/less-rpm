@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better.
 Name: less
-Version: 392
-Release: 2
+Version: 393
+Release: 1
 License: GPL
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -54,6 +54,11 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Nov  7 2005 Jindrich Novy <jnovy@redhat.com> 393-1
+- update to less-393
+- groom Foption patch a bit
+- remove obsolete ncursesw and utf8detect patches
+
 * Fri Oct 21 2005 Jindrich Novy <jnovy@redhat.com> 392-2
 - fix the -F option (#79650), thanks to Petr Raszyk
 
