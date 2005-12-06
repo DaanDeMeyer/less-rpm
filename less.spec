@@ -1,6 +1,6 @@
 Summary: A text file browser similar to more, but better.
 Name: less
-Version: 393
+Version: 394
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -54,6 +54,9 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Dec  6 2005 Jindrich Novy <jnovy@redhat.com> 394-1
+- update to less-394
+
 * Mon Nov  7 2005 Jindrich Novy <jnovy@redhat.com> 393-1
 - update to less-393
 - groom Foption patch a bit
