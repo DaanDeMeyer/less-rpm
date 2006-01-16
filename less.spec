@@ -54,7 +54,7 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Mon Jan 16 2005 Jindrich Novy <jnovy@redhat.com> 394-2
+* Mon Jan 16 2006 Jindrich Novy <jnovy@redhat.com> 394-2
 - apply better fix for #120916 from Avi Kivity (#177819)
   to avoid flickering when '>' is pressed multiple times
 
