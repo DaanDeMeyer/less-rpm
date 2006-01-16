@@ -1,10 +1,28 @@
---- less-382/command.c.fixline	2004-02-04 05:52:26.000000000 +0100
-+++ less-382/command.c	2005-09-05 09:24:03.000000000 +0200
-@@ -1168,6 +1168,7 @@
- 				jump_forw();
- 			else
- 				jump_back(number);
-+			repaint();
- 			break;
+--- less-394/jump.c.fixline	2005-12-03 21:20:32.000000000 +0100
++++ less-394/jump.c	2006-01-16 15:12:00.000000000 +0100
+@@ -30,7 +30,7 @@
+ 	public void
+ jump_forw()
+ {
+-	POSITION pos;
++	POSITION pos, end_pos;
  
- 		case A_GOPOS:
+ 	if (ch_end_seek())
+ 	{
+@@ -42,11 +42,15 @@ jump_forw()
+ 	 * Go back one line from the end of the file
+ 	 * to get to the beginning of the last line.
+ 	 */
+-	pos = back_line(ch_tell());
++	pos = back_line(end_pos = ch_tell());
+ 	if (pos == NULL_POSITION)
+ 		jump_loc((POSITION)0, sc_height-1);
+ 	else
++	{
+ 		jump_loc(pos, sc_height-1);
++		if (position(sc_height-1) != end_pos)
++			repaint();
++	}
+ }
+ 
+ /*
