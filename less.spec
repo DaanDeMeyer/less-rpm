@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better.
 Name: less
 Version: 394
-Release: 2
+Release: 2.1
 License: GPL
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -54,6 +54,9 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Feb 07 2006 Jesse Keating <jkeating@redhat.com> - 394-2.1
+- rebuilt for new gcc4.1 snapshot and glibc changes
+
 * Mon Jan 16 2006 Jindrich Novy <jnovy@redhat.com> 394-2
 - apply better fix for #120916 from Avi Kivity (#177819)
   to avoid flickering when '>' is pressed multiple times
