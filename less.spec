@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better.
 Name: less
 Version: 394
-Release: 2.2
+Release: 3
 License: GPL
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -10,6 +10,8 @@ Source2: less.sh
 Source3: less.csh
 Patch0:	less-382-fixline.patch
 Patch1:	less-392-Foption.patch
+Patch2: less-394-search.patch
+
 
 URL: http://www.greenwoodsoftware.com/less/
 Buildroot: %{_tmppath}/%{name}-root
@@ -29,6 +31,7 @@ files, and you'll use it frequently.
 %setup -q
 %patch0 -p1 -b .fixline
 %patch1 -p1 -b .Foption
+%patch2 -p1 -b .search
 chmod -R a+w *
 
 %build
@@ -54,6 +57,10 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Feb 15 2006 Ivana Varekova <varekova@redhat.com> - 394-3
+- add patch for search problem (search did not find string which
+  occurs in a line after '\0')
+
 * Fri Feb 10 2006 Jesse Keating <jkeating@redhat.com> - 394-2.2
 - bump again for double-long bug on ppc(64)
 
