@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better.
 Name: less
 Version: 394
-Release: 4
+Release: 4.1
 License: GPL
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -57,6 +57,9 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Jul 12 2006 Jesse Keating <jkeating@redhat.com> - 394-4.1
+- rebuild
+
 * Thu May  5 2006 Ivana Varekova <varekova@redhat.com> - 394-4
 - fix problem with unassigned variable DECOMPRESSOR (#190619)
 
