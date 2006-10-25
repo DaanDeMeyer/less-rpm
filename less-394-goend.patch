@@ -1,0 +1,12 @@
+--- less-394/jump.c.goend	2006-10-25 11:04:49.000000000 +0200
++++ less-394/jump.c	2006-10-25 11:31:47.000000000 +0200
+@@ -42,7 +42,9 @@
+ 	 * Go back one line from the end of the file
+ 	 * to get to the beginning of the last line.
+ 	 */
++	pos_clear();
+ 	pos = back_line(end_pos = ch_tell());
++	
+ 	if (pos == NULL_POSITION)
+ 		jump_loc((POSITION)0, sc_height-1);
+ 	else

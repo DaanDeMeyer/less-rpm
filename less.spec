@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better.
 Name: less
 Version: 394
-Release: 4.1
+Release: 5
 License: GPL
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -11,6 +11,7 @@ Source3: less.csh
 Patch0:	less-382-fixline.patch
 Patch1:	less-392-Foption.patch
 Patch2: less-394-search.patch
+Patch3: less-394-goend.patch
 
 
 URL: http://www.greenwoodsoftware.com/less/
@@ -32,6 +33,7 @@ files, and you'll use it frequently.
 %patch0 -p1 -b .fixline
 %patch1 -p1 -b .Foption
 %patch2 -p1 -b .search
+%patch3 -p1 -b .goend
 chmod -R a+w *
 
 %build
@@ -57,6 +59,9 @@ install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Oct 25 2006 Ivana Varekova <varekova@redhat.com> - 394-5
+- fix command ">" (#120916)
+
 * Wed Jul 12 2006 Jesse Keating <jkeating@redhat.com> - 394-4.1
 - rebuild
 
