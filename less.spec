@@ -1,7 +1,7 @@
-Summary: A text file browser similar to more, but better.
+Summary: A text file browser similar to more, but better
 Name: less
 Version: 394
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: GPL
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -12,10 +12,10 @@ Patch0:	less-382-fixline.patch
 Patch1:	less-392-Foption.patch
 Patch2: less-394-search.patch
 Patch3: less-394-goend.patch
-
+Patch4: less-394-time.patch
 
 URL: http://www.greenwoodsoftware.com/less/
-Buildroot: %{_tmppath}/%{name}-root
+Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n) 
 BuildRequires: ncurses-devel
 
 %description
@@ -34,6 +34,7 @@ files, and you'll use it frequently.
 %patch1 -p1 -b .Foption
 %patch2 -p1 -b .search
 %patch3 -p1 -b .goend
+%patch4 -p1 -b .time
 chmod -R a+w *
 chmod 644 lessecho.c lesskey.c version.c
 
@@ -44,23 +45,28 @@ make CC="gcc $RPM_OPT_FLAGS -D_GNU_SOURCE -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOU
 %install
 rm -rf $RPM_BUILD_ROOT
 %makeinstall
-strip -R .comment $RPM_BUILD_ROOT/usr/bin/less
+strip -R .comment $RPM_BUILD_ROOT/%{_bindir}/less
 mkdir -p $RPM_BUILD_ROOT/etc/profile.d
-install -c -m 755 %{SOURCE1} $RPM_BUILD_ROOT/usr/bin/
-install -c -m 755 %{SOURCE2} $RPM_BUILD_ROOT/etc/profile.d
-install -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
+install -p -c -m 755 %{SOURCE1} $RPM_BUILD_ROOT/%{_bindir}
+install -p -c -m 755 %{SOURCE2} $RPM_BUILD_ROOT/etc/profile.d
+install -p -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
+ls -la $RPM_BUILD_ROOT/etc/profile.d
 
 %files
-%defattr(-,root,root)
+%defattr(-,root,root,-)
+%doc LICENSE
 /etc/profile.d/*
-/usr/bin/*
+%{_bindir}/*
 %{_mandir}/man1/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Wed Nov 22 2006 Ivana Varekova <varekova redhat com> - 394-6
+* Wed Feb  7 2007 Ivana Varekova <varekova@redhat.com> - 394-7
+- incorporate the package review
+
+* Wed Nov 22 2006 Ivana Varekova <varekova@redhat.com> - 394-6
 - fix permissions of debuginfo source code
 
 * Wed Oct 25 2006 Ivana Varekova <varekova@redhat.com> - 394-5
