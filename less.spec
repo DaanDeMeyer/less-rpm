@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 394
-Release: 7%{?dist}
+Release: 8%{?dist}
 License: GPL
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -36,7 +36,7 @@ files, and you'll use it frequently.
 %patch3 -p1 -b .goend
 %patch4 -p1 -b .time
 chmod -R a+w *
-chmod 644 lessecho.c lesskey.c version.c
+chmod 644 lessecho.c lesskey.c version.c LICENSE
 
 %build
 %configure
@@ -63,6 +63,9 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Feb 19 2007 Ivana Varekova <varekova@redhat.com> - 394-8
+- change LICENSE permissions
+
 * Wed Feb  7 2007 Ivana Varekova <varekova@redhat.com> - 394-7
 - incorporate the package review
 
