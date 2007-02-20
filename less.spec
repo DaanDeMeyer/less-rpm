@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 394
-Release: 8%{?dist}
+Release: 9%{?dist}
 License: GPL
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -48,8 +48,8 @@ rm -rf $RPM_BUILD_ROOT
 strip -R .comment $RPM_BUILD_ROOT/%{_bindir}/less
 mkdir -p $RPM_BUILD_ROOT/etc/profile.d
 install -p -c -m 755 %{SOURCE1} $RPM_BUILD_ROOT/%{_bindir}
-install -p -c -m 755 %{SOURCE2} $RPM_BUILD_ROOT/etc/profile.d
-install -p -c -m 755 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
+install -p -c -m 644 %{SOURCE2} $RPM_BUILD_ROOT/etc/profile.d
+install -p -c -m 644 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 ls -la $RPM_BUILD_ROOT/etc/profile.d
 
 %files
@@ -63,6 +63,9 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Feb 20 2007 Ivana Varekova <varekova@redhat.com> - 394-9
+- change /etc/profile.d script's permissions
+
 * Mon Feb 19 2007 Ivana Varekova <varekova@redhat.com> - 394-8
 - change LICENSE permissions
 
