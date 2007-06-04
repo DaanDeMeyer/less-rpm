@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 394
-Release: 9%{?dist}
+Release: 10%{?dist}
 License: GPL
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -63,6 +63,11 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Jun  4 2007 Ivana Vraekova <varekova@redhat.com> - 394-10
+- Resolves: #242077
+  remove "-" option from lesspipe.sh script
+
+
 * Tue Feb 20 2007 Ivana Varekova <varekova@redhat.com> - 394-9
 - change /etc/profile.d script's permissions
 
