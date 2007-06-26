@@ -1,6 +1,6 @@
 Summary: A text file browser similar to more, but better
 Name: less
-Version: 394
+Version: 406
 Release: 10%{?dist}
 License: GPL
 Group: Applications/Text
@@ -9,7 +9,7 @@ Source1: lesspipe.sh
 Source2: less.sh
 Source3: less.csh
 Patch0:	less-382-fixline.patch
-Patch1:	less-392-Foption.patch
+Patch1:	less-406-Foption.patch
 Patch2: less-394-search.patch
 Patch3: less-394-goend.patch
 Patch4: less-394-time.patch
@@ -63,10 +63,12 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Mon Jun  4 2007 Ivana Vraekova <varekova@redhat.com> - 394-10
+* Tue Jun 26 2007 Ivana Varekova <varekova@redhat.com> - 406-1
+- update to 406
+
+* Mon Jun  4 2007 Ivana Varekova <varekova@redhat.com> - 394-10
 - Resolves: #242077
   remove "-" option from lesspipe.sh script
-
 
 * Tue Feb 20 2007 Ivana Varekova <varekova@redhat.com> - 394-9
 - change /etc/profile.d script's permissions
