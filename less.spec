@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 406
-Release: 10%{?dist}
+Release: 11%{?dist}
 License: GPL
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -10,13 +10,13 @@ Source2: less.sh
 Source3: less.csh
 Patch0:	less-382-fixline.patch
 Patch1:	less-406-Foption.patch
-Patch2: less-394-search.patch
 Patch3: less-394-goend.patch
 Patch4: less-394-time.patch
 
 URL: http://www.greenwoodsoftware.com/less/
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n) 
 BuildRequires: ncurses-devel
+BuildRequires: pcre-devel
 
 %description
 The less utility is a text file browser that resembles more, but has
@@ -32,14 +32,13 @@ files, and you'll use it frequently.
 %setup -q
 %patch0 -p1 -b .fixline
 %patch1 -p1 -b .Foption
-%patch2 -p1 -b .search
 %patch3 -p1 -b .goend
 %patch4 -p1 -b .time
 chmod -R a+w *
 chmod 644 lessecho.c lesskey.c version.c LICENSE
 
 %build
-%configure
+%configure --with-regex=pcre
 make CC="gcc $RPM_OPT_FLAGS -D_GNU_SOURCE -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64" datadir=%{_docdir}
 
 %install
@@ -63,7 +62,10 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Tue Jun 26 2007 Ivana Varekova <varekova@redhat.com> - 406-1
+* Thu Aug  9 2007 Ivana Varekova <varekova@redhat.com> - 406-11
+- configure a regular expression library
+
+* Tue Jun 26 2007 Ivana Varekova <varekova@redhat.com> - 406-10
 - update to 406
 
 * Mon Jun  4 2007 Ivana Varekova <varekova@redhat.com> - 394-10
