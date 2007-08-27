@@ -2,7 +2,7 @@ Summary: A text file browser similar to more, but better
 Name: less
 Version: 406
 Release: 11%{?dist}
-License: GPL
+License: BSD
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1: lesspipe.sh
