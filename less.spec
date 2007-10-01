@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 406
-Release: 11%{?dist}
+Release: 12%{?dist}
 License: BSD
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -15,6 +15,7 @@ Patch4: less-394-time.patch
 
 URL: http://www.greenwoodsoftware.com/less/
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n) 
+Requires: which
 BuildRequires: ncurses-devel
 BuildRequires: pcre-devel
 
@@ -62,6 +63,10 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Oct  1 2007 Ivana Varekova <varekova@redhat.com> - 406-12
+- change license tag
+- fix 312591 - add which dependency
+
 * Thu Aug  9 2007 Ivana Varekova <varekova@redhat.com> - 406-11
 - configure a regular expression library
 
