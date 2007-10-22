@@ -1,23 +1,21 @@
 Summary: A text file browser similar to more, but better
 Name: less
-Version: 406
-Release: 12%{?dist}
+Version: 409
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1: lesspipe.sh
 Source2: less.sh
 Source3: less.csh
-Patch0:	less-382-fixline.patch
 Patch1:	less-406-Foption.patch
-Patch3: less-394-goend.patch
 Patch4: less-394-time.patch
-
 URL: http://www.greenwoodsoftware.com/less/
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n) 
 Requires: which
 BuildRequires: ncurses-devel
 BuildRequires: pcre-devel
+BuildRequires: autoconf
 
 %description
 The less utility is a text file browser that resembles more, but has
@@ -31,9 +29,7 @@ files, and you'll use it frequently.
 
 %prep
 %setup -q
-%patch0 -p1 -b .fixline
 %patch1 -p1 -b .Foption
-%patch3 -p1 -b .goend
 %patch4 -p1 -b .time
 chmod -R a+w *
 chmod 644 lessecho.c lesskey.c version.c LICENSE
@@ -63,6 +59,11 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Oct 22 2007 Ivana Varekova <varekova@redhat.com> - 409-1
+- upgrade to 409
+- remove useless/obsolete patches
+- add autoconf buildrequires
+
 * Mon Oct  1 2007 Ivana Varekova <varekova@redhat.com> - 406-12
 - change license tag
 - fix 312591 - add which dependency
