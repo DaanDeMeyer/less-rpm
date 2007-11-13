@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 409
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: BSD
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -12,7 +12,6 @@ Patch1:	less-406-Foption.patch
 Patch4: less-394-time.patch
 URL: http://www.greenwoodsoftware.com/less/
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n) 
-Requires: which
 BuildRequires: ncurses-devel
 BuildRequires: pcre-devel
 BuildRequires: autoconf
@@ -59,6 +58,9 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Nov 13 2007 Ivana Varekova <varekova@redhat.com> - 409-2
+- remove which usage (#312591)
+
 * Mon Oct 22 2007 Ivana Varekova <varekova@redhat.com> - 409-1
 - upgrade to 409
 - remove useless/obsolete patches

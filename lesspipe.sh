@@ -29,7 +29,7 @@ lesspipe() {
   *.rpm) rpm -qpivl --changelog -- "$1" ;;
   *.cpi|*.cpio) cpio -itv < "$1" ;;
   *.gif|*.jpeg|*.jpg|*.pcd|*.png|*.tga|*.tiff|*.tif)
-   if [ -x "`which identify`" ]; then
+   if [ -x /usr/bin/identify ]; then
      identify "$1"
    else
      echo "No identify available"
