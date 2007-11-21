@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
-Version: 409
-Release: 2%{?dist}
+Version: 415
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -58,6 +58,9 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Nov 21 2007 Zdenek Prikryl <zprikryl@redhat.com> - 415-1
+- Update to 415
+
 * Tue Nov 13 2007 Ivana Varekova <varekova@redhat.com> - 409-2
 - remove which usage (#312591)
 
