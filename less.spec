@@ -1,6 +1,6 @@
 Summary: A text file browser similar to more, but better
 Name: less
-Version: 415
+Version: 416
 Release: 1%{?dist}
 License: BSD
 Group: Applications/Text
@@ -58,6 +58,11 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Nov 23 2007 Zdenek Prikryl <zprikryl@redhat.com> - 416-1
+- Update to 416
+- Fixed SIGABORT caused by UTF-8 related bug
+- Resolves #395591
+
 * Wed Nov 21 2007 Zdenek Prikryl <zprikryl@redhat.com> - 415-1
 - Update to 415
 
