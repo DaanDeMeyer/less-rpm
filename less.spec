@@ -1,8 +1,8 @@
 Summary: A text file browser similar to more, but better
 Name: less
-Version: 416
+Version: 418
 Release: 1%{?dist}
-License: BSD
+License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1: lesspipe.sh
@@ -58,6 +58,9 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Jan 04 2008 Zdenek Prikryl <zprikryl@redhat.com> - 418-1
+- Update to 418
+
 * Fri Nov 23 2007 Zdenek Prikryl <zprikryl@redhat.com> - 416-1
 - Update to 416
 - Fixed SIGABORT caused by UTF-8 related bug
