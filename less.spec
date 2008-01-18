@@ -58,7 +58,7 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Fri Jan 04 2008 Zdenek Prikryl <zprikryl@redhat.com> - 418-1
+* Fri Jan 18 2008 Zdenek Prikryl <zprikryl@redhat.com> - 418-2
 - Fixed -F option
 - Resolves: #427551
 
