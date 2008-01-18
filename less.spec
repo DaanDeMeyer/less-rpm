@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 418
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -58,6 +58,10 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Jan 04 2008 Zdenek Prikryl <zprikryl@redhat.com> - 418-1
+- Fixed -F option
+- Resolves: #427551
+
 * Fri Jan 04 2008 Zdenek Prikryl <zprikryl@redhat.com> - 418-1
 - Update to 418
 
