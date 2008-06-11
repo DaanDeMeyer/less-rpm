@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
-Version: 418
-Release: 3%{?dist}
+Version: 423
+Release: 1%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -9,6 +9,7 @@ Source1: lesspipe.sh
 Source2: less.sh
 Source3: less.csh
 Patch1:	less-406-Foption.patch
+Patch2: less-423-search.patch
 Patch4: less-394-time.patch
 URL: http://www.greenwoodsoftware.com/less/
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n) 
@@ -29,6 +30,7 @@ files, and you'll use it frequently.
 %prep
 %setup -q
 %patch1 -p1 -b .Foption
+%patch2 -p1 -b .beta
 %patch4 -p1 -b .time
 chmod -R a+w *
 chmod 644 lessecho.c lesskey.c version.c LICENSE
@@ -58,6 +60,9 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Jun 11 2008 Zdenek Prikryl <zprikryl@redhat.com> - 423-1
+- Update to 423
+
 * Wed Feb 20 2008 Fedora Release Engineering <rel-eng@fedoraproject.org> - 418-3
 - Autorebuild for GCC 4.3
 
