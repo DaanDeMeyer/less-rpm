@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 424
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -10,11 +10,12 @@ Source2: less.sh
 Source3: less.csh
 Patch1:	less-406-Foption.patch
 Patch4: less-394-time.patch
+Patch5: less-418-fsync.patch
 URL: http://www.greenwoodsoftware.com/less/
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n) 
 BuildRequires: ncurses-devel
 BuildRequires: pcre-devel
-BuildRequires: autoconf
+BuildRequires: autoconf automake libtool
 
 %description
 The less utility is a text file browser that resembles more, but has
@@ -30,6 +31,10 @@ files, and you'll use it frequently.
 %setup -q
 %patch1 -p1 -b .Foption
 %patch4 -p1 -b .time
+%patch5 -p1 -b .fsync
+
+autoreconf
+
 chmod -R a+w *
 chmod 644 lessecho.c lesskey.c version.c LICENSE
 
@@ -58,6 +63,10 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Mar 17 2009 Zdenek Prikryl <zprikryl@redhat.com> - 424-3
+- Added lzma support
+- Added test if fsync produces EIVAL on tty
+
 * Wed Feb 25 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 424-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
 
