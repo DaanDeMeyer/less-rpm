@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 424
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -63,6 +63,9 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Mar 31 2009 Zdenek Prikryl <zprikryl@redhat.com> - 424-4
+- Added GraphicsMagick support (#492695)
+
 * Tue Mar 17 2009 Zdenek Prikryl <zprikryl@redhat.com> - 424-3
 - Added lzma support
 - Added test if fsync produces EIVAL on tty

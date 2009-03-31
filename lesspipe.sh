@@ -32,9 +32,11 @@ lesspipe() {
   *.gif|*.jpeg|*.jpg|*.pcd|*.png|*.tga|*.tiff|*.tif)
    if [ -x /usr/bin/identify ]; then
      identify "$1"
+   elif [ -x /usr/bin/gm ]; then
+     gm identify "$1"
    else
      echo "No identify available"
-     echo "Install ImageMagick to browse images"
+     echo "Install ImageMagick or GraphicsMagick to browse images"
    fi ;;
   *)
 	case "$1" in
