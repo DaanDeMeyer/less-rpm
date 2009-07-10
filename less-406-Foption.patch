@@ -94,7 +94,7 @@
 +	
 +	pos = position(TOP);
 +	
-+	while (pos != NULL_POSITION)
++	while (pos != NULL_POSITION && nlines <= sc_height)
 +	{
 +		pos = forw_line(pos);
 +		nlines++;

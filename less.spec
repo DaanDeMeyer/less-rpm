@@ -1,6 +1,6 @@
 Summary: A text file browser similar to more, but better
 Name: less
-Version: 429
+Version: 436
 Release: 1%{?dist}
 License: GPLv3+
 Group: Applications/Text
@@ -63,6 +63,10 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Jul 10 2009 Zdenek Prikryl <zprikryl@redhat.com> - 436-1
+- Foption patch is more optimal now
+- Update to 436
+
 * Tue Apr 14 2009 Zdenek Prikryl <zprikryl@redhat.com> - 429-1
 - Update to 429
 
