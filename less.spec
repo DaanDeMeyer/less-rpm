@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 436
-Release: 2%{?dist}
+Release: 4%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -11,6 +11,7 @@ Source3: less.csh
 Patch1:	less-406-Foption.patch
 Patch4: less-394-time.patch
 Patch5: less-418-fsync.patch
+Patch6: less-436-manpage.patch
 URL: http://www.greenwoodsoftware.com/less/
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n) 
 BuildRequires: ncurses-devel
@@ -32,6 +33,7 @@ files, and you'll use it frequently.
 %patch1 -p1 -b .Foption
 %patch4 -p1 -b .time
 %patch5 -p1 -b .fsync
+%patch6 -p1 -b .manpage
 
 autoreconf
 
@@ -63,6 +65,12 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Dec 12 2009 Nikola Pajkovsky <npajkovs@redhat.com> - 436-4
+- #546613 - RFE: add *.jar *.nbm to lesspipe.sh
+
+* Wed Dec 9 2009 Nikola Pajkovsky <npajkovs@redhat.com> - 436-3
+- Resolves: #537746 - Two different descriptions about the default value of LESSBINFMT
+
 * Fri Jul 24 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 436-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
 

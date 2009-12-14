@@ -1,0 +1,18 @@
+diff -up less-436/less.man.manpage less-436/less.man
+--- less-436/less.man.manpage	2009-07-08 00:27:22.000000000 +0200
++++ less-436/less.man	2009-12-09 17:48:54.571351651 +0100
+@@ -1164,10 +1164,10 @@ LESS(1)                                 
+        attribute  is  assumed.   The remainder of LESSBINFMT is a string which
+        may include one printf-style escape sequence (a % followed by x, X,  o,
+        d,  etc.).   For  example, if LESSBINFMT is "*u[%x]", binary characters
+-       are displayed in underlined hexadecimal surrounded  by  brackets.   The
+-       default  if  no LESSBINFMT is specified is "*s<%X>".  The default if no
+-       LESSBINFMT is specified is "*s<%02X>".  Warning: the result of  expand-
+-       ing the character via LESSBINFMT must be less than 31 characters.
++       are displayed in underlined hexadecimal surrounded  by  brackets.   The 
++       default if no LESSBINFMT  is  specified  is  "*s<%02X>".  Warning:  the 
++       result of  expanding the character via LESSBINFMT must be less  than 31
++       characters.
+ 
+        When the character set is utf-8, the LESSUTFBINFMT environment variable
+        acts similarly to LESSBINFMT but it applies to Unicode code points that

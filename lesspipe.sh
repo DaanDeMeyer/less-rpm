@@ -26,7 +26,7 @@ lesspipe() {
   *.[zZ]|*.gz) gzip -dc -- "$1" ;;
   *.bz2) bzip2 -dc -- "$1" ;;
   *.lzma) lzma -c -d -- "$1" ;;
-  *.zip) zipinfo -- "$1" ;;
+  *.zip|*.jar|*.nbm) zipinfo -- "$1" ;;
   *.rpm) rpm -qpivl --changelog -- "$1" ;;
   *.cpi|*.cpio) cpio -itv < "$1" ;;
   *.gif|*.jpeg|*.jpg|*.pcd|*.png|*.tga|*.tiff|*.tif)
