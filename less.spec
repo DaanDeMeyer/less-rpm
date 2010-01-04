@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 436
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -65,6 +65,9 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Jan 4 2010 Nikola Pajkovsky <npajkovs@redhat.com> - 436-5
+- patched wrong manpage. Resolves: #537746.
+
 * Mon Dec 12 2009 Nikola Pajkovsky <npajkovs@redhat.com> - 436-4
 - #546613 - RFE: add *.jar *.nbm to lesspipe.sh
 
