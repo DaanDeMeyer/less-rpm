@@ -5,7 +5,7 @@
 
 lesspipe() {
   case "$1" in
-  *.[1-9n]|*.man|*.[1-9n].bz2|*.man.bz2|*.[1-9].gz|*.[1-9]x.gz|*.[1-9].man.gz)
+  *.[1-9n]|*.man|*.[1-9n].bz2|*.man.bz2|*.[1-9].gz|*.[1-9]x.gz|*.man.gz|*.[1-9].xz|*.[1-9]x.xz|*.man.xz)
 	case "$1" in
 		*.gz)	DECOMPRESSOR="gunzip -c" ;;
 		*.bz2)	DECOMPRESSOR="bunzip2 -c" ;;
@@ -22,6 +22,8 @@ lesspipe() {
 	fi ;;
   *.tar) tar tvvf "$1" ;;
   *.tgz|*.tar.gz|*.tar.[zZ]) tar tzvvf "$1" ;;
+  *.tar.xz) tar Jtvvf "$1" ;;
+  *.xz) xz -dc -- "$1" ;;
   *.tar.bz2|*.tbz2) bzip2 -dc -- "$1" | tar tvvf - ;;
   *.[zZ]|*.gz) gzip -dc -- "$1" ;;
   *.bz2) bzip2 -dc -- "$1" ;;
@@ -42,6 +44,7 @@ lesspipe() {
 	case "$1" in
 		*.gz)	DECOMPRESSOR="gunzip -c" ;;
 		*.bz2)	DECOMPRESSOR="bunzip2 -c" ;;
+		*.xz)	DECOMPRESSOR="unxz -c" ;;
 	esac
 	if [ ! -z $DECOMPRESSOR ] ; then
 		$DECOMPRESSOR -- "$1" ;

@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 436
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -65,6 +65,9 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Jan 20 2010 Nikola Pajkovsky <npajkovs@redhat.com> - 436-6
+- RFE: lesspipe.sh could use a support for *.xz file
+
 * Mon Jan 4 2010 Nikola Pajkovsky <npajkovs@redhat.com> - 436-5
 - patched wrong manpage. Resolves: #537746.
 
