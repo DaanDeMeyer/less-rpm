@@ -12,6 +12,7 @@ Patch1:	less-406-Foption.patch
 Patch4: less-394-time.patch
 Patch5: less-418-fsync.patch
 Patch6: less-436-manpage.patch
+Patch7: less-436-empty-lessopen-pipe.patch
 URL: http://www.greenwoodsoftware.com/less/
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n) 
 BuildRequires: ncurses-devel
@@ -34,6 +35,7 @@ files, and you'll use it frequently.
 %patch4 -p1 -b .time
 %patch5 -p1 -b .fsync
 %patch6 -p1 -b .manpage
+%patch7 -p1 -b .empty-lessopen-pipe
 
 autoreconf
 
@@ -65,6 +67,10 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Dec 21 2010 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 436-7
+- Fix for valid empty LESSOPEN pipe output 
+  Resolves: #579251, #615303
+
 * Wed Jan 20 2010 Nikola Pajkovsky <npajkovs@redhat.com> - 436-6
 - RFE: lesspipe.sh could use a support for *.xz file
 
