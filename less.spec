@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 436
-Release: 7%{?dist}
+Release: 8%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -11,8 +11,11 @@ Source3: less.csh
 Patch1:	less-406-Foption.patch
 Patch4: less-394-time.patch
 Patch5: less-418-fsync.patch
-Patch6: less-436-manpage.patch
-Patch7: less-436-empty-lessopen-pipe.patch
+Patch6: less-436-manpage-add-old-bot-option.patch
+Patch7: less-436-manpage-del-extra-line.patch
+Patch8: less-436-help.patch
+Patch9: less-436-empty-lessopen-pipe.patch
+
 URL: http://www.greenwoodsoftware.com/less/
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n) 
 BuildRequires: ncurses-devel
@@ -34,8 +37,10 @@ files, and you'll use it frequently.
 %patch1 -p1 -b .Foption
 %patch4 -p1 -b .time
 %patch5 -p1 -b .fsync
-%patch6 -p1 -b .manpage
-%patch7 -p1 -b .empty-lessopen-pipe
+%patch6 -p1 -b .manpage-add-old-bot-option
+%patch7 -p1 -b .manpage-del-extra-line
+%patch8 -p1 -b .help
+%patch9 -p1 -b .empty-lessopen-pipe
 
 autoreconf
 
@@ -67,6 +72,12 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Dec 22 2010 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 436-8
+- The new "--old-bot" option is not documented in the man page
+  Resolves: #510724
+- Fix descriptions of some options in online help
+  Resolves: #578289 (Jeff Bastian <jbastian@redhat.com>)[IT603793]
+
 * Tue Dec 21 2010 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 436-7
 - Fix for valid empty LESSOPEN pipe output 
   Resolves: #579251, #615303
