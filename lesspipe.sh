@@ -14,7 +14,7 @@ lesspipe() {
 		*.gz)	DECOMPRESSOR="gzip -dc" ;;
 		*.bz2)	DECOMPRESSOR="bzip2 -dc" ;;
 	esac
-	if [ ! -z $DECOMPRESSOR ] ; then
+	if [ ! -z "$DECOMPRESSOR" ] ; then
 	    if $DECOMPRESSOR -- "$1" | file - | grep -q troff; then
 		    if echo "$1" | grep -q ^/; then	#absolute path
 			    man -- "$1" | cat -s

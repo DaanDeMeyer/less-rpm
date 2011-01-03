@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 436
-Release: 8%{?dist}
+Release: 9%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -72,6 +72,10 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Jan 03 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 436-9
+- Fix regression in lesspipe.sh script (*.gz files etc.)
+  Resolves #615303 (comment #9)
+
 * Wed Dec 22 2010 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 436-8
 - The new "--old-bot" option is not documented in the man page
   Resolves: #510724
