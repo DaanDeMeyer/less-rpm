@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 436
-Release: 9%{?dist}
+Release: 10%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -72,6 +72,9 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Feb 07 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 436-10
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
+
 * Mon Jan 03 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 436-9
 - Fix regression in lesspipe.sh script (*.gz files etc.)
   Resolves #615303 (comment #9)
