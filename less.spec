@@ -72,9 +72,13 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+- Don't require correct exit status from LESSOPEN scripts until
+  it gets accepted by upstream (preserve backward compatibility)
+  Resolves: #666084, #676057
+
 * Mon Jan 03 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 436-9
 - Fix regression in lesspipe.sh script (*.gz files etc.)
-  Resolves #615303 (comment #9)
+  Resolves: #615303 (comment #9)
 
 * Wed Dec 22 2010 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 436-8
 - The new "--old-bot" option is not documented in the man page

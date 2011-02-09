@@ -3,9 +3,13 @@
 # To use this filter with less, define LESSOPEN:
 # export LESSOPEN="|/usr/bin/lesspipe.sh %s"
 #
-# Script should return zero on success. This is important in case
-# of empty output of any decompressor when the output pipe produces
-# just EOF (eg. while uncompressing gzipped empty file).
+# The script should return zero if the output was valid and non-zero
+# otherwise, so less could detect even a valid empty output
+# (for example while uncompressing gzipped empty file).
+# For backward-compatibility, this is not required by default. To turn
+# this functionality there should be another vertical bar (|) straight
+# after the first one in the LESSOPEN environment variable:
+# export LESSOPEN="||/usr/bin/lesspipe.sh %s"
 
 lesspipe() {
   case "$1" in
