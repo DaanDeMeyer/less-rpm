@@ -13,32 +13,28 @@
 
 lesspipe() {
   case "$1" in
-  *.[1-9n]|*.man|*.[1-9n].bz2|*.man.bz2|*.[1-9].gz|*.[1-9]x.gz|*.man.gz|*.[1-9].xz|*.[1-9]x.xz|*.man.xz)
-	case "$1" in
-		*.gz)	DECOMPRESSOR="gzip -dc" ;;
-		*.bz2)	DECOMPRESSOR="bzip2 -dc" ;;
+  *.[1-9n].bz2|*.[1-9]x.bz2|*.man.bz2|*.[1-9n].[gx]z|*.[1-9]x.[gx]z|*.man.[gx]z|*.[1-9n].lzma|*.[1-9]x.lzma|*.man.lzma)
+  	case "$1" in
+		*.gz)		DECOMPRESSOR="gzip -dc" ;;
+		*.bz2)		DECOMPRESSOR="bzip2 -dc" ;;
+		*.xz|*.lzma)	DECOMPRESSOR="xz -dc" ;;
 	esac
-	if [ ! -z "$DECOMPRESSOR" ] ; then
-	    if $DECOMPRESSOR -- "$1" | file - | grep -q troff; then
-		    if echo "$1" | grep -q ^/; then	#absolute path
-			    man -- "$1" | cat -s
-		    else
-			    man -- "./$1" | cat -s
-		    fi
-	    else
-		    $DECOMPRESSOR -- "$1"
-	    fi
-	else
-	    exit 1
-	fi ;;
+	if [ -n "$DECOMPRESSOR" ] && $DECOMPRESSOR -- "$1" | file - | grep -q troff; then
+		$DECOMPRESSOR -- "$1" | man -l - | cat -s
+		exit $?
+	fi ;;&
+  *.[1-9n]|*.[1-9]x|*.man)
+	if file "$1" | grep -q troff; then
+		man -l "$1" | cat -s
+		exit $?
+	fi ;;&
   *.tar) tar tvvf "$1" ;;
   *.tgz|*.tar.gz|*.tar.[zZ]) tar tzvvf "$1" ;;
   *.tar.xz) tar Jtvvf "$1" ;;
-  *.xz) xz -dc -- "$1" ;;
+  *.xz|*.lzma) xz -dc -- "$1" ;;
   *.tar.bz2|*.tbz2) bzip2 -dc -- "$1" | tar tvvf - ;;
   *.[zZ]|*.gz) gzip -dc -- "$1" ;;
   *.bz2) bzip2 -dc -- "$1" ;;
-  *.lzma) lzma -c -d -- "$1" ;;
   *.zip|*.jar|*.nbm) zipinfo -- "$1" ;;
   *.rpm) rpm -qpivl --changelog -- "$1" ;;
   *.cpi|*.cpio) cpio -itv < "$1" ;;

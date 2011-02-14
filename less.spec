@@ -72,6 +72,9 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+- Split case for compressed and plain troff files
+- Add support for *.xz and *.lzma man pages
+  Resolves: #676057
 - Add support for reading UTF-16 and UTF-32 files
   Resolves: #638312
 - Don't require correct exit status from LESSOPEN scripts until
