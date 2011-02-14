@@ -72,6 +72,8 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+- Add support for reading UTF-16 and UTF-32 files
+  Resolves: #638312
 - Don't require correct exit status from LESSOPEN scripts until
   it gets accepted by upstream (preserve backward compatibility)
   Resolves: #666084, #676057

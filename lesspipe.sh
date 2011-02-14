@@ -50,8 +50,20 @@ lesspipe() {
 	else
 		echo "No identify available"
 		echo "Install ImageMagick or GraphicsMagick to browse images"
+		exit 1
 	fi ;;
   *)
+	if [ -x /usr/bin/file -a -x /usr/bin/iconv -a -x /usr/bin/cut ]; then
+		case `file "$1"` in
+		*UTF-16*) conv='UTF-16' ;;
+		*UTF-32*) conv='UTF-32' ;;
+		esac
+		env=`echo $LANG | cut -d. -f2`
+		if [ -n  "$conv" -a -n "$env" -a "$conv" != "$env" ]; then
+			iconv -f $conv -t $env "$1"
+			exit $?
+		fi
+	fi
 	exit 1
   esac
   exit $?
@@ -62,7 +74,7 @@ if [ ! -e "$1" ] ; then
 fi
 
 if [ -d "$1" ] ; then
-	/bin/ls -alF -- "$1"
+	ls -alF -- "$1"
 	exit $?
 else
 	lesspipe "$1" 2> /dev/null
