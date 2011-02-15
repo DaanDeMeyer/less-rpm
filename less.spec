@@ -72,6 +72,7 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+- Clean lesspipe.sh script
 - Split case for compressed and plain troff files
 - Add support for *.xz and *.lzma man pages
   Resolves: #676057
