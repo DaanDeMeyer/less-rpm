@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 436
-Release: 10%{?dist}
+Release: 11%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -72,6 +72,7 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Feb 15 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 436-11
 - Clean lesspipe.sh script
 - Split case for compressed and plain troff files
 - Add support for *.xz and *.lzma man pages
