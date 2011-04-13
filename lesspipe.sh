@@ -60,7 +60,7 @@ case "$1" in
 	fi ;;
 *)
 	if [ -x /usr/bin/file -a -x /usr/bin/iconv -a -x /usr/bin/cut ]; then
-		case `file "$1"` in
+		case `file -b "$1"` in
 		*UTF-16*) conv='UTF-16' ;;
 		*UTF-32*) conv='UTF-32' ;;
 		esac

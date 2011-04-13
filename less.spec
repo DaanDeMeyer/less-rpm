@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 436
-Release: 12%{?dist}
+Release: 13%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -72,6 +72,10 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Apr 13 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 436-13
+- Don't convert files with UTF-16/UTF-32 string in filename
+  Resolve: #638312
+
 * Tue Feb 15 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 436-12
 - Enable LESSOPEN exit statuses as default also in less.sh
   Resolves: #666084, #676057
