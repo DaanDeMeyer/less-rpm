@@ -1,21 +1,19 @@
 Summary: A text file browser similar to more, but better
 Name: less
-Version: 436
-Release: 13%{?dist}
+Version: 443
+Release: 1%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1: lesspipe.sh
 Source2: less.sh
 Source3: less.csh
-Patch1:	less-406-Foption.patch
+Patch1:	less-443-Foption.patch
 Patch4: less-394-time.patch
 Patch5: less-418-fsync.patch
 Patch6: less-436-manpage-add-old-bot-option.patch
-Patch7: less-436-manpage-del-extra-line.patch
 Patch8: less-436-help.patch
 Patch9: less-436-empty-lessopen-pipe.patch
-
 URL: http://www.greenwoodsoftware.com/less/
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n) 
 BuildRequires: ncurses-devel
@@ -38,7 +36,6 @@ files, and you'll use it frequently.
 %patch4 -p1 -b .time
 %patch5 -p1 -b .fsync
 %patch6 -p1 -b .manpage-add-old-bot-option
-%patch7 -p1 -b .manpage-del-extra-line
 %patch8 -p1 -b .help
 %patch9 -p1 -b .empty-lessopen-pipe
 
@@ -72,6 +69,12 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Apr 20 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 443-1
+- Rebase to 443
+- Foption patch made applicable against 443
+- Manpage extra line patch removed; fixed upstream
+  Resolves: #697451
+
 * Wed Apr 13 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 436-13
 - Don't convert files with UTF-16/UTF-32 string in filename
   Resolve: #638312

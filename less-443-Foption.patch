@@ -1,13 +1,15 @@
+--- less-443/main.c.orig	2011-04-20 12:00:59.624710415 +0200
++++ less-443/main.c	2011-04-20 12:02:47.273436639 +0200
+@@ -55,6 +55,7 @@ static char consoleTitle[256];
+ #endif
+ 
+ extern int	less_is_more;
++public int	line_count;
+ extern int	missing_cap;
+ extern int	know_dumb;
+ extern int	quit_if_one_screen;
 --- less-406/main.c.Foption	2007-06-17 18:56:04.000000000 +0200
 +++ less-406/main.c	2008-01-11 10:18:46.000000000 +0100
-@@ -33,6 +33,7 @@ public int	quitting;
- public int	secure;
- public int	dohelp;
- public int	less_is_more;
-+public int	line_count;
- 
- #if LOGFILE
- public int	logfile = -1;
 @@ -280,6 +281,16 @@ main(argc, argv)
  	{
  		if (edit_first())  /* Edit first valid file in cmd line */
@@ -103,3 +105,4 @@
 +	return nlines;
 +}
 +
+
