@@ -1,6 +1,6 @@
 Summary: A text file browser similar to more, but better
 Name: less
-Version: 443
+Version: 444
 Release: 1%{?dist}
 License: GPLv3+
 Group: Applications/Text
@@ -69,6 +69,10 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Jul 14 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 444-1
+- Rebase to 444
+  Resolves: #713406
+
 * Wed Apr 20 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 443-1
 - Rebase to 443
 - Foption patch made applicable against 443
