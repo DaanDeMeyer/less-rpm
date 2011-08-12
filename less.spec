@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 444
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -42,7 +42,7 @@ files, and you'll use it frequently.
 autoreconf
 
 chmod -R a+w *
-chmod 644 lessecho.c lesskey.c version.c LICENSE
+chmod 644 *.c *.h LICENSE README
 
 %build
 %configure --with-regex=pcre
@@ -51,7 +51,6 @@ make CC="gcc $RPM_OPT_FLAGS -D_GNU_SOURCE -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOU
 %install
 rm -rf $RPM_BUILD_ROOT
 %makeinstall
-strip -R .comment $RPM_BUILD_ROOT/%{_bindir}/less
 mkdir -p $RPM_BUILD_ROOT/etc/profile.d
 install -p -c -m 755 %{SOURCE1} $RPM_BUILD_ROOT/%{_bindir}
 install -p -c -m 644 %{SOURCE2} $RPM_BUILD_ROOT/etc/profile.d
@@ -69,6 +68,10 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Aug 12 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 444-2
+- Fix debuginfo source files permissions
+- Remove strip after %makeinstall to fix debuginfo package
+
 * Thu Jul 14 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 444-1
 - Rebase to 444
   Resolves: #713406
