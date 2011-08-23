@@ -70,53 +70,43 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Fri Aug 12 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 444-2
 - Fix debuginfo source files permissions
-- Remove strip after %makeinstall to fix debuginfo package
+- Remove strip after %%makeinstall to fix debuginfo package
 
 * Thu Jul 14 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 444-1
-- Rebase to 444
-  Resolves: #713406
+- Rebase to 444 (#713406)
 
 * Wed Apr 20 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 443-1
 - Rebase to 443
 - Foption patch made applicable against 443
-- Manpage extra line patch removed; fixed upstream
-  Resolves: #697451
+- Manpage extra line patch removed; fixed upstream (#697451)
 
 * Wed Apr 13 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 436-13
-- Don't convert files with UTF-16/UTF-32 string in filename
-  Resolve: #638312
+- Don't convert files with UTF-16/UTF-32 string in filename (#638312)
 
 * Tue Feb 15 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 436-12
-- Enable LESSOPEN exit statuses as default also in less.sh
-  Resolves: #666084, #676057
+- Enable LESSOPEN exit statuses as default also in less.sh (#666084, #676057)
 
 * Tue Feb 15 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 436-11
 - Clean lesspipe.sh script
 - Split case for compressed and plain troff files
-- Add support for *.xz and *.lzma man pages
-  Resolves: #676057
-- Add support for reading UTF-16 and UTF-32 files
-  Resolves: #638312
+- Add support for *.xz and *.lzma man pages (#676057)
+- Add support for reading UTF-16 and UTF-32 files (#638312)
 - Don't require correct exit status from LESSOPEN scripts until
-  it gets accepted by upstream (preserve backward compatibility)
-  Resolves: #666084, #676057
+  it gets accepted by upstream (preserve backward compatibility) (#666084, #676057)
 
 * Mon Feb 07 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 436-10
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
 
 * Mon Jan 03 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 436-9
-- Fix regression in lesspipe.sh script (*.gz files etc.)
-  Resolves: #615303 (comment #9)
+- Fix regression in lesspipe.sh script (*.gz files etc.) (#615303 comment #9)
 
 * Wed Dec 22 2010 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 436-8
-- The new "--old-bot" option is not documented in the man page
-  Resolves: #510724
+- The new "--old-bot" option is not documented in the man page (#510724)
 - Fix descriptions of some options in online help
-  Resolves: #578289 (Jeff Bastian <jbastian@redhat.com>)[IT603793]
+  (#578289, patch by Jeff Bastian <jbastian@redhat.com> [IT603793])
 
 * Tue Dec 21 2010 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 436-7
-- Fix for valid empty LESSOPEN pipe output 
-  Resolves: #579251, #615303
+- Fix for valid empty LESSOPEN pipe output (#579251, #615303)
 
 * Wed Jan 20 2010 Nikola Pajkovsky <npajkovs@redhat.com> - 436-6
 - RFE: lesspipe.sh could use a support for *.xz file
