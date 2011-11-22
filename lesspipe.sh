@@ -59,15 +59,17 @@ case "$1" in
 		exit 1
 	fi ;;
 *)
-	if [ -x /usr/bin/file -a -x /usr/bin/iconv -a -x /usr/bin/cut ]; then
+	if [ -x /usr/bin/file ] && [ -x /usr/bin/iconv ] && [ -x /usr/bin/cut ]; then
 		case `file -b "$1"` in
 		*UTF-16*) conv='UTF-16' ;;
 		*UTF-32*) conv='UTF-32' ;;
 		esac
-		env=`echo $LANG | cut -d. -f2`
-		if [ -n  "$conv" -a -n "$env" -a "$conv" != "$env" ]; then
-			iconv -f $conv -t $env "$1"
-			exit $?
+		if [ -n "$conv" ]; then
+			env=`echo $LANG | cut -d. -f2`
+			if [ -n "$env" -a "$conv" != "$env" ]; then
+				iconv -f $conv -t $env "$1"
+				exit $?
+			fi
 		fi
 	fi
 	exit 1

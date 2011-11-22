@@ -68,6 +68,8 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+- Avoid some unnecessary stat calls and commands in lesspipe.sh,
+  patch by Ville Skyttä (#741440)
 - Use `groff' instead of `man -s' for rendering manpages to prevent
   options incompatibility between man and man-db packages (#718498)
 - Add groff to Requires
