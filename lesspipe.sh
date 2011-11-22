@@ -30,7 +30,7 @@ case "$1" in
 	*.xz|*.lzma)	DECOMPRESSOR="xz -dc" ;;
 	esac
 	if [ -n "$DECOMPRESSOR" ] && $DECOMPRESSOR -- "$1" | file - | grep -q troff; then
-		$DECOMPRESSOR -- "$1" | man -l - | cat -s
+		$DECOMPRESSOR -- "$1" | groff -Tascii -mandoc -
 		exit $?
 	fi ;;&
 *.[1-9n]|*.[1-9]x|*.man)

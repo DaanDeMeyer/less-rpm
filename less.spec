@@ -15,7 +15,7 @@ Patch6: less-436-manpage-add-old-bot-option.patch
 Patch8: less-436-help.patch
 Patch9: less-436-empty-lessopen-pipe.patch
 URL: http://www.greenwoodsoftware.com/less/
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n) 
+Requires: groff
 BuildRequires: ncurses-devel
 BuildRequires: pcre-devel
 BuildRequires: autoconf automake libtool
@@ -68,6 +68,10 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+- Use `groff' instead of `man -s' for rendering manpages to prevent
+  options incompatibility between man and man-db packages (#718498)
+- Add groff to Requires
+
 * Mon Aug 23 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 444-3
 - Substitute %%makeinstall macro with make DESTDIR* install (#732557)
 
