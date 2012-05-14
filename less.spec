@@ -8,7 +8,7 @@ Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1: lesspipe.sh
 Source2: less.sh
 Source3: less.csh
-Patch1:	less-443-Foption.patch
+Patch1:	less-444-Foption.v2.patch
 Patch2: less-394-search.patch
 Patch4: less-394-time.patch
 Patch5: less-418-fsync.patch
@@ -39,7 +39,6 @@ files, and you'll use it frequently.
 %patch6 -p1 -b .manpage-add-old-bot-option
 %patch8 -p1 -b .help
 %patch9 -p1 -b .empty-lessopen-pipe
-
 autoreconf
 
 chmod -R a+w *
@@ -72,6 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 * Mon May 14 2012 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 444-7
 - Fix less.sh not to override user-defined LESSOPEN variable (#802757)
 - Use POSIX regcomp instead of PCRE - revert 406-11, commit 4b961c7 (#643233)
+- Merge Foption changes by Colin Guthrie to Foption.v2.patch (#805735)
 
 * Fri Feb 10 2012 Petr Pisar <ppisar@redhat.com> - 444-6
 - Rebuild against PCRE 8.30
