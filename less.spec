@@ -9,6 +9,7 @@ Source1: lesspipe.sh
 Source2: less.sh
 Source3: less.csh
 Patch1:	less-443-Foption.patch
+Patch2: less-394-search.patch
 Patch4: less-394-time.patch
 Patch5: less-418-fsync.patch
 Patch6: less-436-manpage-add-old-bot-option.patch
@@ -17,7 +18,6 @@ Patch9: less-436-empty-lessopen-pipe.patch
 URL: http://www.greenwoodsoftware.com/less/
 Requires: groff
 BuildRequires: ncurses-devel
-BuildRequires: pcre-devel
 BuildRequires: autoconf automake libtool
 
 %description
@@ -33,6 +33,7 @@ files, and you'll use it frequently.
 %prep
 %setup -q
 %patch1 -p1 -b .Foption
+%patch2 -p1 -b .search
 %patch4 -p1 -b .time
 %patch5 -p1 -b .fsync
 %patch6 -p1 -b .manpage-add-old-bot-option
@@ -45,7 +46,7 @@ chmod -R a+w *
 chmod 644 *.c *.h LICENSE README
 
 %build
-%configure --with-regex=pcre
+%configure
 make CC="gcc $RPM_OPT_FLAGS -D_GNU_SOURCE -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64" datadir=%{_docdir}
 
 %install
@@ -70,6 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Mon May 14 2012 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 444-7
 - Fix less.sh not to override user-defined LESSOPEN variable (#802757)
+- Use POSIX regcomp instead of PCRE - revert 406-11, commit 4b961c7 (#643233)
 
 * Fri Feb 10 2012 Petr Pisar <ppisar@redhat.com> - 444-6
 - Rebuild against PCRE 8.30
