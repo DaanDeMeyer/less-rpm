@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 444
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -68,6 +68,9 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon May 14 2012 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 444-7
+- Fix less.sh not to override user-defined LESSOPEN variable (#802757)
+
 * Fri Feb 10 2012 Petr Pisar <ppisar@redhat.com> - 444-6
 - Rebuild against PCRE 8.30
 
