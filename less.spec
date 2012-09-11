@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
-Version: 444
-Release: 8%{?dist}
+Version: 451
+Release: 1%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -13,8 +13,7 @@ Patch2: less-394-search.patch
 Patch4: less-394-time.patch
 Patch5: less-418-fsync.patch
 Patch6: less-436-manpage-add-old-bot-option.patch
-Patch8: less-436-help.patch
-Patch9: less-436-empty-lessopen-pipe.patch
+Patch7: less-436-help.patch
 URL: http://www.greenwoodsoftware.com/less/
 Requires: groff
 BuildRequires: ncurses-devel
@@ -37,8 +36,7 @@ files, and you'll use it frequently.
 %patch4 -p1 -b .time
 %patch5 -p1 -b .fsync
 %patch6 -p1 -b .manpage-add-old-bot-option
-%patch8 -p1 -b .help
-%patch9 -p1 -b .empty-lessopen-pipe
+%patch7 -p1 -b .help
 autoreconf
 
 chmod -R a+w *
@@ -68,8 +66,9 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Thu Jul 19 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 444-8
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
+* Tue Sep 11 2012 Martin Briza <mbriza@redhat.com> - 451-1
+- Rebase to 451 (#835802)
+- Removed the empty-lessopen-pipe patch as the issue is now fixed upstream.
 
 * Mon May 14 2012 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 444-7
 - Fix less.sh not to override user-defined LESSOPEN variable (#802757)
