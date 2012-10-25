@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 451
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -15,7 +15,7 @@ Patch5: less-418-fsync.patch
 Patch6: less-436-manpage-add-old-bot-option.patch
 Patch7: less-436-help.patch
 URL: http://www.greenwoodsoftware.com/less/
-Requires: groff
+Requires: groff-base
 BuildRequires: ncurses-devel
 BuildRequires: autoconf automake libtool
 
@@ -66,6 +66,9 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Oct 25 2012 Martin Briza <mbriza@redhat.com> - 451-2
+- Changed unnecessary groff dependency to groff-base (#868376)
+
 * Tue Sep 11 2012 Martin Briza <mbriza@redhat.com> - 451-1
 - Rebase to 451 (#835802)
 - Removed the empty-lessopen-pipe patch as the issue is now fixed upstream.
