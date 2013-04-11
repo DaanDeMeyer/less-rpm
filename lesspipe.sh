@@ -22,6 +22,14 @@ fi
 
 exec 2>/dev/null
 
+# Allow for user defined filters
+if [ -x ~/.lessfilter ]; then
+	~/.lessfilter "$1"
+	if [ $? -eq 0 ]; then
+		exit 0
+	fi
+fi
+
 case "$1" in
 *.[1-9n].bz2|*.[1-9]x.bz2|*.man.bz2|*.[1-9n].[gx]z|*.[1-9]x.[gx]z|*.man.[gx]z|*.[1-9n].lzma|*.[1-9]x.lzma|*.man.lzma)
 	case "$1" in
@@ -48,6 +56,7 @@ case "$1" in
 *.zip|*.jar|*.nbm) zipinfo -- "$1" ;;
 *.rpm) rpm -qpivl --changelog -- "$1" ;;
 *.cpi|*.cpio) cpio -itv < "$1" ;;
+*.gpg) gpg -d "$1" ;;
 *.gif|*.jpeg|*.jpg|*.pcd|*.png|*.tga|*.tiff|*.tif)
 	if [ -x /usr/bin/identify ]; then
 		identify "$1"

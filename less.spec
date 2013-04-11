@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 458
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -66,6 +66,10 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Apr 11 2013 Fridolin Pokorny <fpokorny@redhat.com> - 458-2
+- Added gpg support to lesspipe.sh (#885122)
+- Added ~/.lessfilter support (#885122)
+
 * Thu Apr 11 2013 Fridolin Pokorny <fpokorny@redhat.com> - 458-1
 - Update to 458
 
