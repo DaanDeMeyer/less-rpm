@@ -1,0 +1,12 @@
+diff -upr less-458_orig/less.hlp less-458_work/less.hlp
+--- less-458_orig/less.hlp	2013-05-07 14:03:52.037104428 +0200
++++ less-458_work/less.hlp	2013-05-07 11:24:43.475780365 +0200
+@@ -135,6 +135,8 @@
+                   Highlight only last match for searches.
+   -G  ........  --HILITE-SEARCH
+                   Don't highlight any matches for searches.
++  --old-bot
++                  Revert to the old bottom of screen behavior.
+   -h [_N]  ....  --max-back-scroll=[_N]
+                   Backward scroll limit.
+   -i  ........  --ignore-case

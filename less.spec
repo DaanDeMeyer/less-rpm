@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 458
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -17,6 +17,7 @@ Patch7: less-436-help.patch
 Patch8: less-458-lessecho-usage.patch
 Patch9: less-458-less-filters-man.patch
 Patch10: less-458-lesskey-usage.patch
+Patch11: less-458-old-bot-in-help.patch
 URL: http://www.greenwoodsoftware.com/less/
 Requires: groff-base
 BuildRequires: ncurses-devel
@@ -72,9 +73,11 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu May 07 2013 Fridolin Pokorny <fpokorny@redhat.com> - 458-3
 - Expanded lessecho usage (#948597)
 - Added lessfilter info to man (#948597)
 - Expanded lesskey usage (#948597)
+- Added --old-bot to help (#948597)
 
 * Thu Apr 11 2013 Fridolin Pokorny <fpokorny@redhat.com> - 458-2
 - Added gpg support to lesspipe.sh (#885122)
