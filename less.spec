@@ -14,6 +14,7 @@ Patch4: less-394-time.patch
 Patch5: less-418-fsync.patch
 Patch6: less-436-manpage-add-old-bot-option.patch
 Patch7: less-436-help.patch
+Patch8: less-458-lessecho-usage.patch
 URL: http://www.greenwoodsoftware.com/less/
 Requires: groff-base
 BuildRequires: ncurses-devel
@@ -37,6 +38,7 @@ files, and you'll use it frequently.
 %patch5 -p1 -b .fsync
 %patch6 -p1 -b .manpage-add-old-bot-option
 %patch7 -p1 -b .help
+%patch8 -p1 -b .lessecho-usage
 autoreconf
 
 chmod -R a+w *
@@ -66,6 +68,8 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+- Expanded lessecho usage (#948597)
+
 * Thu Apr 11 2013 Fridolin Pokorny <fpokorny@redhat.com> - 458-2
 - Added gpg support to lesspipe.sh (#885122)
 - Added ~/.lessfilter support (#885122)
