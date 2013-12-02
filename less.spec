@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 458
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -73,10 +73,14 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Dec 02 2013 Jozef Mlich <jmlich@redhat.com> - 458-5
+- Resolves #1036326 fixing command line parsing in lesskey
+- changed day of week in order to avoid bogus date in changelog
+
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 458-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
-* Thu May 07 2013 Fridolin Pokorny <fpokorny@redhat.com> - 458-3
+* Tue May 07 2013 Fridolin Pokorny <fpokorny@redhat.com> - 458-3
 - Expanded lessecho usage (#948597)
 - Added lessfilter info to man (#948597)
 - Expanded lesskey usage (#948597)
@@ -117,7 +121,7 @@ rm -rf $RPM_BUILD_ROOT
   options incompatibility between man and man-db packages (#718498)
 - Add groff to Requires
 
-* Mon Aug 23 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 444-3
+* Tue Aug 23 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 444-3
 - Substitute %%makeinstall macro with make DESTDIR* install (#732557)
 
 * Fri Aug 12 2011 Vojtech Vitek (V-Teq) <vvitek@redhat.com> - 444-2
@@ -166,7 +170,7 @@ rm -rf $RPM_BUILD_ROOT
 * Mon Jan 4 2010 Nikola Pajkovsky <npajkovs@redhat.com> - 436-5
 - patched wrong manpage. Resolves: #537746.
 
-* Mon Dec 12 2009 Nikola Pajkovsky <npajkovs@redhat.com> - 436-4
+* Sat Dec 12 2009 Nikola Pajkovsky <npajkovs@redhat.com> - 436-4
 - #546613 - RFE: add *.jar *.nbm to lesspipe.sh
 
 * Wed Dec 9 2009 Nikola Pajkovsky <npajkovs@redhat.com> - 436-3
@@ -175,7 +179,7 @@ rm -rf $RPM_BUILD_ROOT
 * Fri Jul 24 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 436-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
 
-* Tue Jul 10 2009 Zdenek Prikryl <zprikryl@redhat.com> - 436-1
+* Fri Jul 10 2009 Zdenek Prikryl <zprikryl@redhat.com> - 436-1
 - Foption patch is more optimal now
 - Update to 436
 
@@ -256,7 +260,7 @@ rm -rf $RPM_BUILD_ROOT
 * Wed Jul 12 2006 Jesse Keating <jkeating@redhat.com> - 394-4.1
 - rebuild
 
-* Thu May  5 2006 Ivana Varekova <varekova@redhat.com> - 394-4
+* Fri May  5 2006 Ivana Varekova <varekova@redhat.com> - 394-4
 - fix problem with unassigned variable DECOMPRESSOR (#190619)
 
 * Wed Feb 15 2006 Ivana Varekova <varekova@redhat.com> - 394-3
@@ -456,7 +460,7 @@ rm -rf $RPM_BUILD_ROOT
 - fix up lesspipe stuff (Bug #8750 and a couple of non-reported bugs)
   (Karsten, did I mention I'll kill you when you return from SAP? ;) )
 
-* Sun Jan 07 2000 Karsten Hopp <karsten@redhat.de>
+* Fri Jan 7 2000 Karsten Hopp <karsten@redhat.de>
 - added lesspipe.sh to show listings of package
   contents instead of binary output.
 

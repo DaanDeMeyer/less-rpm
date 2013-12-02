@@ -18,20 +18,3 @@ diff -upr less-458_orig/lesskey.c less-458_work/lesskey.c
  	exit(1);
  }
  
-@@ -307,6 +315,8 @@ parse_args(argc, argv)
- 			break;
- 		case 'o':
- 			outfile = &argv[0][2];
-+		case 'h':
-+			goto opt_h;
- 		opt_o:
- 			if (*outfile == '\0')
- 			{
-@@ -319,6 +329,7 @@ parse_args(argc, argv)
- 		opt_V:
- 			printf("lesskey  version %s\n", version);
- 			exit(0);
-+		opt_h:
- 		default:
- 			usage();
- 		}
