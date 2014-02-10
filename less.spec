@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 458
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -73,6 +73,10 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Feb 10 2014 Jozef Mlich <jmlich@redhat.com> - 458-6
+- The data in less-458-old-bot-in-help.patch was not
+  preprocessed by mkhelp (i.e. not applied)
+
 * Mon Dec 02 2013 Jozef Mlich <jmlich@redhat.com> - 458-5
 - Resolves #1036326 fixing command line parsing in lesskey
 - changed day of week in order to avoid bogus date in changelog
