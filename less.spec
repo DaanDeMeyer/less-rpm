@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 458
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -18,6 +18,7 @@ Patch8: less-458-lessecho-usage.patch
 Patch9: less-458-less-filters-man.patch
 Patch10: less-458-lesskey-usage.patch
 Patch11: less-458-old-bot-in-help.patch
+Patch12: less-458-outdated-unicode-data.patch
 URL: http://www.greenwoodsoftware.com/less/
 Requires: groff-base
 BuildRequires: ncurses-devel
@@ -44,6 +45,8 @@ files, and you'll use it frequently.
 %patch8 -p1 -b .lessecho-usage
 %patch9 -p1 -b .less-filters-man
 %patch10 -p1 -b .lesskey-usage
+%patch11 -p1 -b .old-bot
+%patch12 -p1 -b .outdated-unicode-data
 autoreconf
 
 chmod -R a+w *
@@ -73,6 +76,11 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Mar 31 2014 Jozef Mlich <jmlich@redhat.com> - 458-7
+- FIXES outdated ubin_table in charset.c; 
+  Kudos to Akira TAGOH
+  Resolves: #1074489
+
 * Mon Feb 10 2014 Jozef Mlich <jmlich@redhat.com> - 458-6
 - The data in less-458-old-bot-in-help.patch was not
   preprocessed by mkhelp (i.e. not applied)
