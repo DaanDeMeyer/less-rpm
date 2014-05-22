@@ -43,7 +43,7 @@ case "$1" in
 	fi ;;&
 *.[1-9n]|*.[1-9]x|*.man)
 	if file "$1" | grep -q troff; then
-		man -l "$1" | cat -s
+		groff -Tascii -mandoc "$1" | cat -s
 		exit $?
 	fi ;;&
 *.tar) tar tvvf "$1" ;;
@@ -60,8 +60,10 @@ case "$1" in
 *.gif|*.jpeg|*.jpg|*.pcd|*.png|*.tga|*.tiff|*.tif)
 	if [ -x /usr/bin/identify ]; then
 		identify "$1"
+		exit $?
 	elif [ -x /usr/bin/gm ]; then
 		gm identify "$1"
+		exit $?
 	else
 		echo "No identify available"
 		echo "Install ImageMagick or GraphicsMagick to browse images"
@@ -81,7 +83,8 @@ case "$1" in
 			fi
 		fi
 	fi
-	exit 1
+	cat "$1"
+	exit $?
 esac
-exit $?
+
 

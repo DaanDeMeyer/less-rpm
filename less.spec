@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 458
-Release: 7%{?dist}
+Release: 8%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -76,6 +76,12 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu May 22 2014 Jozef Mlich <jmlich@redhat.com> - 458-8
+- (lesspipe) the groff was used just in case of gzipped man pages
+- (lesspipe) the exit $? should be used directly after command; 
+  otherwise may return unexpected value.
+- (lesspipe) not preprocessed output was returning 1
+
 * Mon Mar 31 2014 Jozef Mlich <jmlich@redhat.com> - 458-7
 - FIXES outdated ubin_table in charset.c; 
   Kudos to Akira TAGOH
