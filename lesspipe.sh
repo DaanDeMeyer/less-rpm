@@ -11,13 +11,25 @@
 # after the first one in the LESSOPEN environment variable:
 # export LESSOPEN="||/usr/bin/lesspipe.sh %s"
 
+
+# This function turns over return values. 
+# 0 becomes 1 and anything else becomes 0
+# This behavior is forced because backward compatiblity 
+# Bug #186931 - less breaks with tcsh's printexitvalue=1
+function handle_exit_status() {
+  if [ $1 -eq 0 ]; then
+    exit 1
+  fi
+  exit 0
+}
+
 if [ ! -e "$1" ] ; then
-	exit 1
+	handle_exit_status 1 $1 # passing exit status and name of not existing file
 fi
 
 if [ -d "$1" ] ; then
 	ls -alF -- "$1"
-	exit $?
+	handle_exit_status $?
 fi
 
 exec 2>/dev/null
@@ -26,7 +38,7 @@ exec 2>/dev/null
 if [ -x ~/.lessfilter ]; then
 	~/.lessfilter "$1"
 	if [ $? -eq 0 ]; then
-		exit 0
+		handle_exit_status 0
 	fi
 fi
 
@@ -39,35 +51,35 @@ case "$1" in
 	esac
 	if [ -n "$DECOMPRESSOR" ] && $DECOMPRESSOR -- "$1" | file - | grep -q troff; then
 		$DECOMPRESSOR -- "$1" | groff -Tascii -mandoc -
-		exit $?
+		handle_exit_status $?
 	fi ;;&
 *.[1-9n]|*.[1-9]x|*.man)
 	if file "$1" | grep -q troff; then
 		groff -Tascii -mandoc "$1" | cat -s
-		exit $?
+		handle_exit_status $?
 	fi ;;&
-*.tar) tar tvvf "$1" ;;
-*.tgz|*.tar.gz|*.tar.[zZ]) tar tzvvf "$1" ;;
-*.tar.xz) tar Jtvvf "$1" ;;
-*.xz|*.lzma) xz -dc -- "$1" ;;
-*.tar.bz2|*.tbz2) bzip2 -dc -- "$1" | tar tvvf - ;;
-*.[zZ]|*.gz) gzip -dc -- "$1" ;;
-*.bz2) bzip2 -dc -- "$1" ;;
-*.zip|*.jar|*.nbm) zipinfo -- "$1" ;;
-*.rpm) rpm -qpivl --changelog -- "$1" ;;
-*.cpi|*.cpio) cpio -itv < "$1" ;;
-*.gpg) gpg -d "$1" ;;
+*.tar) tar tvvf "$1"; handle_exit_status $? ;;
+*.tgz|*.tar.gz|*.tar.[zZ]) tar tzvvf "$1"; handle_exit_status $? ;;
+*.tar.xz) tar Jtvvf "$1"; handle_exit_status $? ;;
+*.xz|*.lzma) xz -dc -- "$1"; handle_exit_status $? ;;
+*.tar.bz2|*.tbz2) bzip2 -dc -- "$1" | tar tvvf -; handle_exit_status $? ;;
+*.[zZ]|*.gz) gzip -dc -- "$1"; handle_exit_status $? ;;
+*.bz2) bzip2 -dc -- "$1"; handle_exit_status $? ;;
+*.zip|*.jar|*.nbm) zipinfo -- "$1"; handle_exit_status $? ;;
+*.rpm) rpm -qpivl --changelog -- "$1"; handle_exit_status $? ;;
+*.cpi|*.cpio) cpio -itv < "$1"; handle_exit_status $? ;;
+*.gpg) gpg -d "$1"; handle_exit_status $? ;;
 *.gif|*.jpeg|*.jpg|*.pcd|*.png|*.tga|*.tiff|*.tif)
 	if [ -x /usr/bin/identify ]; then
 		identify "$1"
-		exit $?
+		handle_exit_status $?
 	elif [ -x /usr/bin/gm ]; then
 		gm identify "$1"
-		exit $?
+		handle_exit_status $?
 	else
 		echo "No identify available"
 		echo "Install ImageMagick or GraphicsMagick to browse images"
-		exit 1
+		handle_exit_status 1
 	fi ;;
 *)
 	if [ -x /usr/bin/file ] && [ -x /usr/bin/iconv ] && [ -x /usr/bin/cut ]; then
@@ -79,12 +91,9 @@ case "$1" in
 			env=`echo $LANG | cut -d. -f2`
 			if [ -n "$env" -a "$conv" != "$env" ]; then
 				iconv -f $conv -t $env "$1"
-				exit $?
+				handle_exit_status $?
 			fi
 		fi
 	fi
-	cat "$1"
-	exit $?
+	handle_exit_status 1
 esac
-
-

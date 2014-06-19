@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 458
-Release: 9%{?dist}
+Release: 10%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -19,6 +19,7 @@ Patch9: less-458-less-filters-man.patch
 Patch10: less-458-lesskey-usage.patch
 Patch11: less-458-old-bot-in-help.patch
 Patch12: less-458-outdated-unicode-data.patch
+Patch13: less-458-return-non-zero.patch
 URL: http://www.greenwoodsoftware.com/less/
 Requires: groff-base
 BuildRequires: ncurses-devel
@@ -47,6 +48,7 @@ files, and you'll use it frequently.
 %patch10 -p1 -b .lesskey-usage
 %patch11 -p1 -b .old-bot
 %patch12 -p1 -b .outdated-unicode-data
+%patch13 -p1 -b .return-non-zero
 autoreconf
 
 chmod -R a+w *
@@ -76,6 +78,10 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Jun 19 2014 Jozef Mlich <jmlich@redhat.com> - 458-10
+- (lesspipe) better handling of exit status
+  fixing regression of #186931 - turns over the lesspipe exit behavior
+
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 458-9
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 

@@ -1,0 +1,12 @@
+diff -up ./filename.c.return-non-zero ./filename.c
+--- ./filename.c.return-non-zero	2013-04-04 18:55:05.000000000 +0200
++++ ./filename.c	2014-06-19 13:10:50.692171380 +0200
+@@ -915,7 +915,7 @@ open_altfile(filename, pf, pfd)
+ 			 * If only one pipe char, just assume no alt file.
+ 			 */
+ 			int status = pclose(fd);
+-			if (returnfd > 1 && status == 0) {
++			if (returnfd > 1 && status != 0) {
+ 				*pfd = NULL;
+ 				*pf = -1;
+ 				return (save(FAKE_EMPTYFILE));
