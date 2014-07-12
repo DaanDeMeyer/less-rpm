@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 458
-Release: 11%{?dist}
+Release: 12%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -67,7 +67,8 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 
 %files
 %defattr(-,root,root,-)
-%doc LICENSE
+%{!?_licensedir:%global license %%doc}
+%license LICENSE
 /etc/profile.d/*
 %{_bindir}/*
 %{_mandir}/man1/*
@@ -76,6 +77,9 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Sat Jul 12 2014 Tom Callaway <spot@fedoraproject.org> - 458-12
+- fix license handling
+
 * Mon Jun 23 2014 Jozef Mlich <jmlich@redhat.com> - 458-11
 - rollback of previous problem. See explanation of upstream.
   http://greenwoodsoftware.com/less/faq.html#profileout
