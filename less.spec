@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
-Version: 458
-Release: 13%{?dist}
+Version: 471
+Release: 1%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -18,7 +18,6 @@ Patch8: less-458-lessecho-usage.patch
 Patch9: less-458-less-filters-man.patch
 Patch10: less-458-lesskey-usage.patch
 Patch11: less-458-old-bot-in-help.patch
-Patch12: less-458-outdated-unicode-data.patch
 URL: http://www.greenwoodsoftware.com/less/
 Requires: groff-base
 BuildRequires: ncurses-devel
@@ -36,7 +35,7 @@ files, and you'll use it frequently.
 
 %prep
 %setup -q
-%patch1 -p1 -b .Foption
+%patch1 -p2 -b .Foption
 %patch2 -p1 -b .search
 %patch4 -p1 -b .time
 %patch5 -p1 -b .fsync
@@ -46,7 +45,6 @@ files, and you'll use it frequently.
 %patch9 -p1 -b .less-filters-man
 %patch10 -p1 -b .lesskey-usage
 %patch11 -p1 -b .old-bot
-%patch12 -p1 -b .outdated-unicode-data
 autoreconf
 
 chmod -R a+w *
@@ -77,6 +75,9 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Dec 17 2014 Jozef Mlich <jmlich@redhat.com> - 471-1
+- Update to 471
+
 * Sun Aug 17 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 458-13
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
