@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 471
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -46,7 +46,7 @@ files, and you'll use it frequently.
 %patch9 -p1 -b .less-filters-man
 %patch10 -p1 -b .lesskey-usage
 %patch11 -p1 -b .old-bot
-%patch12 -p1 -b .out_of_bounds_read.patch
+%patch12 -p2 -b .out_of_bounds_read.patch
 autoreconf
 
 chmod -R a+w *
@@ -77,6 +77,9 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Jun 01 2015 Jozef Mlich <jmlich@redhat.com> - 471-4
+- update of previous patch
+
 * Mon Jun 01 2015 Jozef Mlich <jmlich@redhat.com> - 471-3
 - out of bounds read access in is_utf8_well_formed()
   Resolves: #1201310
