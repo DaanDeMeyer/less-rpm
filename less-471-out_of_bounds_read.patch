@@ -1,0 +1,11 @@
+--- less-474/line.c	2015-01-31 00:20:29.000000000 +0100
++++ less-475/line.c	2015-03-05 20:07:08.000000000 +0100
+@@ -807,7 +807,7 @@
+ 			mbc_buf[mbc_buf_index++] = c;
+ 			if (mbc_buf_index < mbc_buf_len)
+ 				return (0);
+-			if (is_utf8_well_formed(mbc_buf))
++			if (is_utf8_well_formed(mbc_buf, mbc_buf_index))
+ 				r = do_append(get_wchar(mbc_buf), mbc_buf, mbc_pos);
+ 			else
+ 				/* Complete, but not shortest form, sequence. */
