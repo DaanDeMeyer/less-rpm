@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
-Version: 471
-Release: 5%{?dist}
+Version: 478
+Release: 1%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -18,7 +18,6 @@ Patch8: less-458-lessecho-usage.patch
 Patch9: less-458-less-filters-man.patch
 Patch10: less-458-lesskey-usage.patch
 Patch11: less-458-old-bot-in-help.patch
-Patch12: less-471-out_of_bounds_read.patch
 URL: http://www.greenwoodsoftware.com/less/
 Requires: groff-base
 BuildRequires: ncurses-devel
@@ -46,11 +45,11 @@ files, and you'll use it frequently.
 %patch9 -p1 -b .less-filters-man
 %patch10 -p1 -b .lesskey-usage
 %patch11 -p1 -b .old-bot
-%patch12 -p2 -b .out_of_bounds_read.patch
-autoreconf
-
 chmod -R a+w *
 chmod 644 *.c *.h LICENSE README
+rm -f ./configure
+autoreconf -fiv
+
 
 %build
 %configure
@@ -77,6 +76,10 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Jun 24 2015 Jozef Mlich <jmlich@redhat.com> - 478-1
+- update to 478
+  http://greenwoodsoftware.com/less/news.478.html
+
 * Wed Jun 17 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 471-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
 
