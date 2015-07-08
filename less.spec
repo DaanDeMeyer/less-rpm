@@ -1,6 +1,6 @@
 Summary: A text file browser similar to more, but better
 Name: less
-Version: 478
+Version: 479
 Release: 1%{?dist}
 License: GPLv3+
 Group: Applications/Text
@@ -76,6 +76,9 @@ ls -la $RPM_BUILD_ROOT/etc/profile.d
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Jul 07 2015 Fedora Release Monitoring <release-monitoring@fedoraproject.org> - 479-1
+- Update to 479 (#1240456)
+
 * Wed Jun 24 2015 Jozef Mlich <jmlich@redhat.com> - 478-1
 - update to 478
   http://greenwoodsoftware.com/less/news.478.html
