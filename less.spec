@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 479
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv3+
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -45,37 +45,33 @@ files, and you'll use it frequently.
 %patch9 -p1 -b .less-filters-man
 %patch10 -p1 -b .lesskey-usage
 %patch11 -p1 -b .old-bot
-chmod -R a+w *
-chmod 644 *.c *.h LICENSE README
-rm -f ./configure
-autoreconf -fiv
 
 
 %build
+rm -f ./configure
+autoreconf -fiv
 %configure
-make CC="gcc $RPM_OPT_FLAGS -D_GNU_SOURCE -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64" datadir=%{_docdir}
+make %{?_smp_mflags} CFLAGS="%{optflags} -D_GNU_SOURCE -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64"
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make DESTDIR=$RPM_BUILD_ROOT install
+%make_install
 mkdir -p $RPM_BUILD_ROOT/etc/profile.d
-install -p -c -m 755 %{SOURCE1} $RPM_BUILD_ROOT/%{_bindir}
-install -p -c -m 644 %{SOURCE2} $RPM_BUILD_ROOT/etc/profile.d
-install -p -c -m 644 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
-ls -la $RPM_BUILD_ROOT/etc/profile.d
+install -p        %{SOURCE1} $RPM_BUILD_ROOT/%{_bindir}
+install -p -m 644 %{SOURCE2} $RPM_BUILD_ROOT/etc/profile.d
+install -p -m 644 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 
 %files
-%defattr(-,root,root,-)
-%{!?_licensedir:%global license %%doc}
+%doc README NEWS INSTALL COPYING
 %license LICENSE
 /etc/profile.d/*
 %{_bindir}/*
 %{_mandir}/man1/*
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %changelog
+* Mon Aug 03 2015 Viktor Jancik <vjancik@redhat.com> - 479-2
+- Updated spec file to comply with current Fedora Packaging Guidelines
+  Added missing documentation files
+
 * Tue Jul 07 2015 Fedora Release Monitoring <release-monitoring@fedoraproject.org> - 479-1
 - Update to 479 (#1240456)
 
