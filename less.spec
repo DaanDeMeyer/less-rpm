@@ -8,6 +8,7 @@ Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1: lesspipe.sh
 Source2: less.sh
 Source3: less.csh
+Source4: less.zsh
 Patch1:	less-444-Foption.v2.patch
 Patch2: less-394-search.patch
 Patch4: less-394-time.patch
@@ -59,6 +60,7 @@ mkdir -p $RPM_BUILD_ROOT/etc/profile.d
 install -p        %{SOURCE1} $RPM_BUILD_ROOT/%{_bindir}
 install -p -m 644 %{SOURCE2} $RPM_BUILD_ROOT/etc/profile.d
 install -p -m 644 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
+install -p -m 644 %{SOURCE4} $RPM_BUILD_ROOT/etc/profile.d
 
 %files
 %doc README NEWS INSTALL COPYING
@@ -68,9 +70,10 @@ install -p -m 644 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 %{_mandir}/man1/*
 
 %changelog
-* Mon Aug 03 2015 Viktor Jancik <vjancik@redhat.com> - 479-2
+* Mon Aug 21 2015 Viktor Jancik <vjancik@redhat.com> - 479-2
 - Updated spec file to comply with current Fedora Packaging Guidelines
   Added missing documentation files
+- Fixed less profile.d scripts
 
 * Tue Jul 07 2015 Fedora Release Monitoring <release-monitoring@fedoraproject.org> - 479-1
 - Update to 479 (#1240456)
