@@ -30,6 +30,8 @@ if [ -x ~/.lessfilter ]; then
 	fi
 fi
 
+export MAN_KEEP_FORMATTING=1
+
 case "$1" in
 *.[1-9n].bz2|*.[1-9]x.bz2|*.man.bz2|*.[1-9n].[gx]z|*.[1-9]x.[gx]z|*.man.[gx]z|*.[1-9n].lzma|*.[1-9]x.lzma|*.man.lzma)
 	case "$1" in
