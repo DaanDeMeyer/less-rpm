@@ -38,12 +38,12 @@ case "$1" in
 	*.xz|*.lzma)	DECOMPRESSOR="xz -dc" ;;
 	esac
 	if [ -n "$DECOMPRESSOR" ] && $DECOMPRESSOR -- "$1" | file - | grep -q troff; then
-		$DECOMPRESSOR -- "$1" | groff -Tascii -mandoc -
+		$DECOMPRESSOR -- "$1" | man -P cat -l -
 		exit $?
 	fi ;;&
 *.[1-9n]|*.[1-9]x|*.man)
 	if file "$1" | grep -q troff; then
-		groff -Tascii -mandoc "$1" | cat -s
+		man -P cat -l "$1"
 		exit $?
 	fi ;;&
 *.tar) tar tvvf "$1"; exit $? ;;

@@ -21,6 +21,7 @@ Patch10: less-458-lesskey-usage.patch
 Patch11: less-458-old-bot-in-help.patch
 URL: http://www.greenwoodsoftware.com/less/
 Requires: groff-base
+Requires: man-db
 BuildRequires: ncurses-devel
 BuildRequires: autoconf automake libtool
 
@@ -70,10 +71,11 @@ install -p -m 644 %{SOURCE4} $RPM_BUILD_ROOT/etc/profile.d
 %{_mandir}/man1/*
 
 %changelog
-* Mon Aug 21 2015 Viktor Jancik <vjancik@redhat.com> - 479-2
+* Mon Aug 22 2015 Viktor Jancik <vjancik@redhat.com> - 479-2
 - Updated spec file to comply with current Fedora Packaging Guidelines
   Added missing documentation files
 - Fixed less profile.d scripts
+- Fixed preprocessing of man pages with special characters (#1241543)
 
 * Tue Jul 07 2015 Fedora Release Monitoring <release-monitoring@fedoraproject.org> - 479-1
 - Update to 479 (#1240456)
