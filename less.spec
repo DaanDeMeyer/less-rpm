@@ -1,16 +1,14 @@
 Summary: A text file browser similar to more, but better
 Name: less
-Version: 479
-Release: 3%{?dist}
+Version: 481
+Release: 1%{?dist}
 License: GPLv3+ or BSD
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1: lesspipe.sh
 Source2: less.sh
 Source3: less.csh
-Source4: less.zsh
 Patch1: less-444-Foption.v2.patch
-Patch2: less-394-search.patch
 Patch4: less-394-time.patch
 Patch5: less-418-fsync.patch
 Patch6: less-436-manpage-add-old-bot-option.patch
@@ -38,7 +36,6 @@ files, and you'll use it frequently.
 %prep
 %setup -q
 %patch1 -p2 -b .Foption
-%patch2 -p1 -b .search
 %patch4 -p1 -b .time
 %patch5 -p1 -b .fsync
 %patch6 -p1 -b .manpage-add-old-bot-option
@@ -61,7 +58,6 @@ mkdir -p $RPM_BUILD_ROOT/etc/profile.d
 install -p        %{SOURCE1} $RPM_BUILD_ROOT/%{_bindir}
 install -p -m 644 %{SOURCE2} $RPM_BUILD_ROOT/etc/profile.d
 install -p -m 644 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
-install -p -m 644 %{SOURCE4} $RPM_BUILD_ROOT/etc/profile.d
 
 %files
 %doc README NEWS INSTALL
@@ -71,6 +67,9 @@ install -p -m 644 %{SOURCE4} $RPM_BUILD_ROOT/etc/profile.d
 %{_mandir}/man1/*
 
 %changelog
+* Fri Oct 2 2015 Viktor Jancik <vjancik@redhat.com> - 481-1
+- Update to version 481, fixes #1231493
+
 * Wed Sep 2 2015 Viktor Jancik <vjancik@redhat.com> - 479-3
 - Added missing double quotes in profile.d scripts
 - Corrected license information
