@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 481
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPLv3+ or BSD
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -18,8 +18,6 @@ Patch9: less-458-less-filters-man.patch
 Patch10: less-458-lesskey-usage.patch
 Patch11: less-458-old-bot-in-help.patch
 URL: http://www.greenwoodsoftware.com/less/
-Requires: groff-base
-Requires: man-db
 BuildRequires: ncurses-devel
 BuildRequires: autoconf automake libtool
 
@@ -67,6 +65,9 @@ install -p -m 644 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 %{_mandir}/man1/*
 
 %changelog
+* Wed Apr 20 2016 Pavel Raiskup <praiskup@redhat.com> - 481-4
+- don't strictly require man-db or groff-base (rhbz#1278857)
+
 * Tue Mar 29 2016 Pavel Raiskup <praiskup@redhat.com> - 481-3
 - avoid one ubiquitous stat() call in less.sh and less.csh if possible
   (rhbz#1321591)

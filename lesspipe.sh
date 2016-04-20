@@ -30,6 +30,24 @@ if [ -x ~/.lessfilter ]; then
 	fi
 fi
 
+manfilter ()
+{
+	if test -x /usr/bin/man ; then
+		# See rhbz#1241543 for more info.  Well, actually we firstly
+		# used 'man -l', then we switched to groff, and then we again
+		# switched back to 'man -l'.
+		/usr/bin/man -P /usr/bin/cat -l "$1"
+	elif test -x /usr/bin/groff; then
+		# This is from pre-rhbz#1241543-time.
+		groff -Tascii -mandoc "$1" | cat -s
+	else
+		echo "WARNING:"
+		echo "WARNING: to better show manual pages, install 'man-db' package"
+		echo "WARNING:"
+		cat "$1"
+	fi
+}
+
 export MAN_KEEP_FORMATTING=1
 
 case "$1" in
@@ -40,12 +58,12 @@ case "$1" in
 	*.xz|*.lzma)	DECOMPRESSOR="xz -dc" ;;
 	esac
 	if [ -n "$DECOMPRESSOR" ] && $DECOMPRESSOR -- "$1" | file - | grep -q troff; then
-		$DECOMPRESSOR -- "$1" | man -P cat -l -
+		$DECOMPRESSOR -- "$1" | manfilter -
 		exit $?
 	fi ;;&
 *.[1-9n]|*.[1-9]x|*.man)
 	if file "$1" | grep -q troff; then
-		man -P cat -l "$1"
+		manfilter "$1"
 		exit $?
 	fi ;;&
 *.tar) tar tvvf "$1"; exit $? ;;
