@@ -9,6 +9,7 @@ if ( $?LESSOPEN && { eval 'test ! -z "$LESSOPEN"' } ) then
     :
 else
     if ( -x /usr/bin/lesspipe.sh ) then
-        setenv LESSOPEN "|/usr/bin/lesspipe.sh %s"
+        # The '||' here is intentional, see rhbz#1254837.
+        setenv LESSOPEN "||/usr/bin/lesspipe.sh %s"
     endif
 endif

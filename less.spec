@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 481
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: GPLv3+ or BSD
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -65,6 +65,9 @@ install -p -m 644 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 %{_mandir}/man1/*
 
 %changelog
+* Mon Apr 25 2016 Pavel Raiskup <praiskup@redhat.com> - 481-5
+- again use the correct '||' syntax in LESSOPEN variable (rhbz#1254837)
+
 * Wed Apr 20 2016 Pavel Raiskup <praiskup@redhat.com> - 481-4
 - don't strictly require man-db or groff-base (rhbz#1278857)
 
