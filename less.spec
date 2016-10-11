@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 481
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: GPLv3+ or BSD
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -65,6 +65,9 @@ install -p -m 644 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 %{_mandir}/man1/*
 
 %changelog
+* Tue Oct 11 2016 Ville Skyttä <ville.skytta@iki.fi> - 481-6
+- Prefer gpg2 over gpg for *.gpg (rhbz#1383284)
+
 * Mon Apr 25 2016 Pavel Raiskup <praiskup@redhat.com> - 481-5
 - again use the correct '||' syntax in LESSOPEN variable (rhbz#1254837)
 

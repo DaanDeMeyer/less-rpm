@@ -76,7 +76,18 @@ case "$1" in
 *.zip|*.jar|*.nbm) zipinfo -- "$1"; exit $? ;;
 *.rpm) rpm -qpivl --changelog -- "$1"; exit $? ;;
 *.cpi|*.cpio) cpio -itv < "$1"; exit $? ;;
-*.gpg) gpg -d "$1"; exit $? ;;
+*.gpg)
+	if [ -x /usr/bin/gpg2 ]; then
+		gpg2 -d "$1"
+		exit $?
+	elif [ -x /usr/bin/gpg ]; then
+		gpg -d "$1"
+		exit $?
+	else
+		echo "No GnuPG available."
+		echo "Install gnupg2 or gnupg to show encrypted files."
+		exit 1
+	fi ;;
 *.gif|*.jpeg|*.jpg|*.pcd|*.png|*.tga|*.tiff|*.tif)
 	if [ -x /usr/bin/identify ]; then
 		identify "$1"
