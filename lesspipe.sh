@@ -74,7 +74,8 @@ case "$1" in
 *.[zZ]|*.gz) gzip -dc -- "$1"; exit $? ;;
 *.bz2) bzip2 -dc -- "$1"; exit $? ;;
 *.zip|*.jar|*.nbm) zipinfo -- "$1"; exit $? ;;
-*.rpm) rpm -qpivl --changelog -- "$1"; exit $? ;;
+# --nomanifest -> rhbz#1450277
+*.rpm) rpm -qpivl --changelog --nomanifest -- "$1"; exit $? ;;
 *.cpi|*.cpio) cpio -itv < "$1"; exit $? ;;
 *.gpg)
 	if [ -x /usr/bin/gpg2 ]; then

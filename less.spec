@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 487
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPLv3+ or BSD
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -65,6 +65,9 @@ install -p -m 644 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 %{_mandir}/man1/*
 
 %changelog
+* Tue May 16 2017 Pavel Raiskup <praiskup@redhat.com> - 487-3
+- read correctly text files named accidentally '*.rpm' (rhbz#1449790)
+
 * Fri Feb 10 2017 Fedora Release Engineering <releng@fedoraproject.org> - 487-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
 
