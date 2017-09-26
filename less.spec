@@ -1,14 +1,13 @@
 Summary: A text file browser similar to more, but better
 Name: less
-Version: 487
-Release: 6%{?dist}
+Version: 520
+Release: 1%{?dist}
 License: GPLv3+ or BSD
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1: lesspipe.sh
 Source2: less.sh
 Source3: less.csh
-Patch1: less-444-Foption.v2.patch
 Patch4: less-394-time.patch
 Patch5: less-418-fsync.patch
 Patch6: less-436-manpage-add-old-bot-option.patch
@@ -33,7 +32,6 @@ files, and you'll use it frequently.
 
 %prep
 %setup -q
-%patch1 -p2 -b .Foption
 %patch4 -p1 -b .time
 %patch5 -p1 -b .fsync
 %patch6 -p1 -b .manpage-add-old-bot-option
@@ -65,6 +63,9 @@ install -p -m 644 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 %{_mandir}/man1/*
 
 %changelog
+* Sat Feb 17 2018 Pavel Raiskup <praiskup@redhat.com> - 520-1
+- beta testing release
+
 * Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 487-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
