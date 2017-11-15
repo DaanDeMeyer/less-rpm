@@ -1,6 +1,6 @@
 Summary: A text file browser similar to more, but better
 Name: less
-Version: 527
+Version: 529
 Release: 1%{?dist}
 License: GPLv3+ or BSD
 Group: Applications/Text
@@ -63,9 +63,8 @@ install -p -m 644 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 %{_mandir}/man1/*
 
 %changelog
-* Sat Feb 17 2018 Pavel Raiskup <praiskup@redhat.com> - 527-1
+* Sat Feb 17 2018 Pavel Raiskup <praiskup@redhat.com> - 529-1
 - beta testing release
-- new beta release
 
 * Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 487-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
