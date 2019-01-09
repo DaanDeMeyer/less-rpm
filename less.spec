@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 530
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPLv3+ or BSD
 Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -63,6 +63,9 @@ install -p -m 644 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 %{_mandir}/man1/*
 
 %changelog
+* Wed Jan 09 2019 Pavel Raiskup <praiskup@redhat.com> - 530-3
+- add lzip compression support into lesspipe.sh (rhbz#1664383)
+
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 530-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
