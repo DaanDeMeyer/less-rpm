@@ -3,7 +3,6 @@ Name: less
 Version: 530
 Release: 3%{?dist}
 License: GPLv3+ or BSD
-Group: Applications/Text
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1: lesspipe.sh
 Source2: less.sh
