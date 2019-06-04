@@ -14,8 +14,8 @@ diff -ur less-418.orig/configure.ac less-418/configure.ac
  
  # Checks for library functions.
  AC_TYPE_SIGNAL
--AC_CHECK_FUNCS([fsync popen _setjmp sigprocmask sigsetmask snprintf stat system fchmod])
-+AC_CHECK_FUNCS([popen _setjmp sigprocmask sigsetmask snprintf stat system fchmod])
+-AC_CHECK_FUNCS([fsync popen _setjmp sigprocmask sigsetmask snprintf stat system fchmod realpath])
++AC_CHECK_FUNCS([popen _setjmp sigprocmask sigsetmask snprintf stat system fchmod realpath])
  
  # AC_CHECK_FUNCS may not work for inline functions, so test these separately.
  AC_MSG_CHECKING(for memcpy)

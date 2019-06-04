@@ -2,7 +2,7 @@ diff -upr less-458_orig/lessecho.c less-458_work/lessecho.c
 --- less-458_orig/lessecho.c	2013-05-07 14:03:52.091104655 +0200
 +++ less-458_work/lessecho.c	2013-05-07 11:21:10.883991862 +0200
 @@ -41,7 +41,27 @@ static int num_metachars = 0;
- pr_usage()
+ pr_usage(VOID_PARAM)
  {
  	fprintf(stderr,
 -		"usage: lessecho [-ox] [-cx] [-pn] [-dn] [-mx] [-nn] [-ex] [-fn] [-a] file ...\n");
