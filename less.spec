@@ -1,6 +1,6 @@
 Summary: A text file browser similar to more, but better
 Name: less
-Version: 550
+Version: 551
 Release: 1%{?dist}
 License: GPLv3+ or BSD
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -62,6 +62,10 @@ install -p -m 644 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 %{_mandir}/man1/*
 
 %changelog
+* Wed Jul 17 2019 Matej Mužila <mmuzila@redhat.com> - 551-1
+- Update to new upstream release
+- Resolves: #1719419
+
 * Tue Jun 04 2019 Matej Mužila <mmuzila@redhat.com> - 550-1
 - Update to new upstream release
 - Resolves: #1674080
