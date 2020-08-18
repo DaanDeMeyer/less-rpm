@@ -45,7 +45,7 @@ files, and you'll use it frequently.
 rm -f ./configure
 autoreconf -fiv
 %configure
-make %{?_smp_mflags} CFLAGS="%{optflags} -D_GNU_SOURCE -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64"
+%make_build CFLAGS="%{optflags} -D_GNU_SOURCE -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64"
 
 %install
 %make_install
