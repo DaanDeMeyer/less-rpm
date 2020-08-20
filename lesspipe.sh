@@ -51,11 +51,13 @@ manfilter ()
 export MAN_KEEP_FORMATTING=1
 
 case "$1" in
-*.[1-9n].bz2|*.[1-9]x.bz2|*.man.bz2|*.[1-9n].[glx]z|*.[1-9]x.[glx]z|*.man.[glx]z|*.[1-9n].lzma|*.[1-9]x.lzma|*.man.lzma)
+*.[1-9n].bz2|*.[1-9]x.bz2|*.man.bz2|*.[1-9n].[glx]z|*.[1-9]x.[glx]z|*.man.[glx]z|*.[1-9n].lzma|*.[1-9]x.lzma|*.man.lzma|*.[1-9n].zst|*.[1-9]x.zst|*.man.zst|*.[1-9n].br|*.[1-9]x.br|*.man.br)
 	case "$1" in
 	*.gz)		DECOMPRESSOR="gzip -dc" ;;
 	*.bz2)		DECOMPRESSOR="bzip2 -dc" ;;
 	*.lz)		DECOMPRESSOR="lzip -dc" ;;
+	*.zst)		DECOMPRESSOR="zstd -dcq" ;;
+	*.br)		DECOMPRESSOR="brotli -dc" ;;
 	*.xz|*.lzma)	DECOMPRESSOR="xz -dc" ;;
 	esac
 	if [ -n "$DECOMPRESSOR" ] && $DECOMPRESSOR -- "$1" | file - | grep -q troff; then
@@ -73,6 +75,10 @@ case "$1" in
 *.xz|*.lzma) xz -dc -- "$1"; exit $? ;;
 *.tar.lz) tar --lzip -tvvf "$1"; exit $? ;;
 *.lz) lzip -dc -- "$1"; exit $? ;;
+*.tar.zst) tar --zstd -tvvf "$1"; exit $? ;;
+*.zst) zstd -dcq -- "$1"; exit $? ;;
+*.tar.br) brotli -dc -- "$1" | tar tvvf -; exit $? ;;
+*.br) brotli -dc -- "$1"; exit $? ;;
 *.tar.bz2|*.tbz2) bzip2 -dc -- "$1" | tar tvvf -; exit $? ;;
 *.[zZ]|*.gz) gzip -dc -- "$1"; exit $? ;;
 *.bz2) bzip2 -dc -- "$1"; exit $? ;;

@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 551
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: GPLv3+ or BSD
 Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1: lesspipe.sh
@@ -62,6 +62,9 @@ install -p -m 644 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 %{_mandir}/man1/*
 
 %changelog
+* Thu Aug 20 2020 Andrew Schorr <ajschorr@fedoraproject.org> - 551-5
+- Add zstd and brotli support to lesspipe.sh
+
 * Tue Jul 28 2020 Fedora Release Engineering <releng@fedoraproject.org> - 551-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
