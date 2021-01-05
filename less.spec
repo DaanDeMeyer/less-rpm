@@ -18,6 +18,7 @@ Patch11: less-458-old-bot-in-help.patch
 URL: http://www.greenwoodsoftware.com/less/
 BuildRequires: ncurses-devel
 BuildRequires: autoconf automake libtool
+BuildRequires: make
 
 %description
 The less utility is a text file browser that resembles more, but has
