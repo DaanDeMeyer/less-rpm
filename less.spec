@@ -3,7 +3,7 @@ Name: less
 Version: 568
 Release: 1%{?dist}
 License: GPLv3+ or BSD
-Source: http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
+Source0: https://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1: lesspipe.sh
 Source2: less.sh
 Source3: less.csh
@@ -15,7 +15,7 @@ Patch8: less-458-lessecho-usage.patch
 Patch9: less-458-less-filters-man.patch
 Patch10: less-458-lesskey-usage.patch
 Patch11: less-458-old-bot-in-help.patch
-URL: http://www.greenwoodsoftware.com/less/
+URL: https://www.greenwoodsoftware.com/less/
 BuildRequires: ncurses-devel
 BuildRequires: autoconf automake libtool
 BuildRequires: make
@@ -51,7 +51,7 @@ autoreconf -fiv
 %install
 %make_install
 mkdir -p $RPM_BUILD_ROOT/etc/profile.d
-install -p        %{SOURCE1} $RPM_BUILD_ROOT/%{_bindir}
+install -p        %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}
 install -p -m 644 %{SOURCE2} $RPM_BUILD_ROOT/etc/profile.d
 install -p -m 644 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 
