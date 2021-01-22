@@ -1,6 +1,6 @@
 Summary: A text file browser similar to more, but better
 Name: less
-Version: 568
+Version: 575
 Release: 1%{?dist}
 License: GPLv3+ or BSD
 Source0: https://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
@@ -8,7 +8,7 @@ Source1: lesspipe.sh
 Source2: less.sh
 Source3: less.csh
 Patch4: less-394-time.patch
-Patch5: less-418-fsync.patch
+Patch5: less-475-fsync.patch
 Patch6: less-436-manpage-add-old-bot-option.patch
 Patch7: less-436-help.patch
 Patch8: less-458-lessecho-usage.patch
@@ -63,6 +63,9 @@ install -p -m 644 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 %{_mandir}/man1/*
 
 %changelog
+* Fri Jan 22 2021 Stephen Gallagher <sgallagh@redhat.com> - 575-1
+- Update to latest version (#1919119)
+
 * Mon Nov 30 2020 Zbigniew Jędrzejewski-Szmek <zbyszek@in.waw.pl> - 568-1
 - Update to latest version (#1818534)
 
