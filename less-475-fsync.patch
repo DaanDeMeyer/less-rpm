@@ -4,17 +4,12 @@ Date: Fri, 22 Jan 2021 09:49:13 -0500
 Subject: [PATCH] Test for fsync on tty
 
 Signed-off-by: Stephen Gallagher <sgallagh@redhat.com>
----
- configure.ac | 14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
 
-diff --git a/configure.ac b/configure.ac
-index 918807967473e01af6c5d78b1737c2d06f96b426..ce478adc1ea2d37c2b22eb46fc2b55d2ba49244e 100644
---- a/configure.ac
-+++ b/configure.ac
-@@ -219,10 +219,12 @@ AH_TEMPLATE([HAVE_STAT_INO],
- 	[Define HAVE_STAT_INO if your struct stat has st_ino and st_dev.])
- AH_TEMPLATE([HAVE_TIME_T],
+Modified for less 581.2 Filip Januš <fjanus@redhat.com>
+diff -ur less-581.2/configure.ac less_fsync/configure.ac
+--- less-581.2/configure.ac	2021-04-28 17:00:08.000000000 +0200
++++ less_fsync/configure.ac	2021-05-06 10:59:07.560062397 +0200
+@@ -221,6 +221,8 @@
  	[Define HAVE_TIME_T if your system supports the "time_t" type.])
  AH_TEMPLATE([HAVE_STRERROR],
  	[Define HAVE_STRERROR if you have the strerror() function.])
@@ -23,24 +18,16 @@ index 918807967473e01af6c5d78b1737c2d06f96b426..ce478adc1ea2d37c2b22eb46fc2b55d2
  AH_TEMPLATE([HAVE_FILENO],
  	[Define HAVE_FILENO if you have the fileno() macro.])
  AH_TEMPLATE([HAVE_ERRNO],
- 	[Define HAVE_ERRNO if you have the errno variable.])
- AH_TEMPLATE([MUST_DEFINE_ERRNO],
-@@ -272,11 +274,11 @@ AC_MSG_CHECKING(for ANSI function prototypes)
- AC_TRY_COMPILE([], [int f(int a) { return a; }],
-   [AC_MSG_RESULT(yes); AC_DEFINE(HAVE_ANSI_PROTOS)], [AC_MSG_RESULT(no)])
+@@ -274,7 +276,7 @@
  
  # Checks for library functions.
  AC_TYPE_SIGNAL
--AC_CHECK_FUNCS([fchmod fsync nanosleep poll popen realpath _setjmp sigprocmask sigsetmask snprintf stat system usleep])
-+AC_CHECK_FUNCS([fchmod nanosleep poll popen realpath _setjmp sigprocmask sigsetmask snprintf stat system usleep])
+-AC_CHECK_FUNCS([fchmod fsync nanosleep poll popen realpath _setjmp sigprocmask sigsetmask snprintf stat system ttyname usleep])
++AC_CHECK_FUNCS([fchmod nanosleep poll popen realpath _setjmp sigprocmask sigsetmask snprintf stat system ttyname usleep])
  
  # AC_CHECK_FUNCS may not work for inline functions, so test these separately.
  AC_MSG_CHECKING(for memcpy)
- AC_TRY_LINK([
- #if HAVE_STRING_H
-@@ -319,10 +321,20 @@ AC_TRY_LINK([
- #if HAVE_ERRNO_H
- #include <errno.h>
+@@ -321,6 +323,16 @@
  #endif], [static char *x; x = strerror(0);],
    [AC_MSG_RESULT(yes); AC_DEFINE(HAVE_STRERROR)], [AC_MSG_RESULT(no)])
  
@@ -57,8 +44,3 @@ index 918807967473e01af6c5d78b1737c2d06f96b426..ce478adc1ea2d37c2b22eb46fc2b55d2
  AC_MSG_CHECKING(for sys_errlist)
  AC_TRY_LINK(, [extern char *sys_errlist[]; static char **x; x = sys_errlist;], 
    [AC_MSG_RESULT(yes); AC_DEFINE(HAVE_SYS_ERRLIST)], [AC_MSG_RESULT(no)])
- 
- AC_CHECK_TYPES([sigset_t],,,[#include <signal.h>])
--- 
-2.29.2
-
