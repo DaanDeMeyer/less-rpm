@@ -63,6 +63,9 @@ install -p -m 644 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 %{_mandir}/man1/*
 
 %changelog
+* Thu May 6 2021 Filip Januš <fjanus@redhat.com> - 581.2-1
+- Rebase to 581.2-1
+
 * Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 575-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
