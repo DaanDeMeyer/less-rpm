@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 581.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv3+ or BSD
 Source0: https://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1: lesspipe.sh
@@ -63,6 +63,9 @@ install -p -m 644 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 %{_mandir}/man1/*
 
 %changelog
+* Thu Jul 22 2021 Fedora Release Engineering <releng@fedoraproject.org> - 581.2-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
+
 * Thu May 6 2021 Filip Januš <fjanus@redhat.com> - 581.2-1
 - Rebase to 581.2-1
 
