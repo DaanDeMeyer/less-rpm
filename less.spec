@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 590
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv3+ or BSD
 Source0: https://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1: lesspipe.sh
@@ -15,6 +15,9 @@ Patch8: less-458-lessecho-usage.patch
 Patch9: less-458-less-filters-man.patch
 Patch10: less-458-lesskey-usage.patch
 Patch11: less-458-old-bot-in-help.patch
+# Backported version of upstream commit d21820c
+# https://github.com/gwsw/less/commit/d21820c9d8501b5814d33d4fb8a621c6c563e102 
+Patch12: less-590-hyperlink-bleed.patch
 URL: https://www.greenwoodsoftware.com/less/
 BuildRequires: ncurses-devel
 BuildRequires: autoconf automake libtool
@@ -40,6 +43,7 @@ files, and you'll use it frequently.
 %patch9 -p1 -b .less-filters-man
 %patch10 -p1 -b .lesskey-usage
 %patch11 -p1 -b .old-bot
+%patch12 -p1 -b .hyperlinks
 
 
 %build
@@ -63,6 +67,9 @@ install -p -m 644 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 %{_mandir}/man1/*
 
 %changelog
+* Sat Oct 02 2021 FeRD (Frank Dana) <ferdnyc@gmail.com> - 590-2
+- Backport patch from upstream to fix hyperlinked text bug
+
 * Tue Aug 10 2021 Matej Mužila <mmuzila@redhat.com> - 590-1
 - Update to new upstream release
 
