@@ -1,0 +1,25 @@
+From 31a14b8124e551f9028c5a2785fbbcb5839c491d Mon Sep 17 00:00:00 2001
+From: Mark Nudelman <markn@greenwoodsoftware.com>
+Date: Fri, 8 Oct 2021 15:25:30 -0700
+Subject: [PATCH] Remove unnecessary memory allocation.
+
+---
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/main.c b/main.c
+index 190ca6c..5934eb9 100644
+--- a/main.c
++++ b/main.c
+@@ -140,7 +140,7 @@ main(argc, argv)
+ 
+ 	s = lgetenv(less_is_more ? "MORE" : "LESS");
+ 	if (s != NULL)
+-		scan_option(save(s));
++		scan_option(s);
+ 
+ #define isoptstring(s)  (((s)[0] == '-' || (s)[0] == '+') && (s)[1] != '\0')
+ 	while (argc > 0 && (isoptstring(*argv) || isoptpending()))
+-- 
+2.36.1
+

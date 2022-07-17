@@ -18,6 +18,9 @@ Patch11: less-458-old-bot-in-help.patch
 # Backported version of upstream commit d21820c
 # https://github.com/gwsw/less/commit/d21820c9d8501b5814d33d4fb8a621c6c563e102 
 Patch12: less-590-hyperlink-bleed.patch
+# Backported version of upstream commit 31a14b8
+# https://github.com/gwsw/less/commit/31a14b8124e551f9028c5a2785fbbcb5839c491d
+Patch13: less-590-memory-leak.patch
 URL: https://www.greenwoodsoftware.com/less/
 BuildRequires: ncurses-devel
 BuildRequires: autoconf automake libtool
@@ -44,6 +47,7 @@ files, and you'll use it frequently.
 %patch10 -p1 -b .lesskey-usage
 %patch11 -p1 -b .old-bot
 %patch12 -p1 -b .hyperlinks
+%patch13 -p1 -b .memory-leak
 
 
 %build
