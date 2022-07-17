@@ -1,7 +1,7 @@
 Summary: A text file browser similar to more, but better
 Name: less
 Version: 590
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: GPLv3+ or BSD
 Source0: https://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1: lesspipe.sh
@@ -18,6 +18,9 @@ Patch11: less-458-old-bot-in-help.patch
 # Backported version of upstream commit d21820c
 # https://github.com/gwsw/less/commit/d21820c9d8501b5814d33d4fb8a621c6c563e102 
 Patch12: less-590-hyperlink-bleed.patch
+# Backported version of upstream commit 31a14b8
+# https://github.com/gwsw/less/commit/31a14b8124e551f9028c5a2785fbbcb5839c491d
+Patch13: less-590-memory-leak.patch
 URL: https://www.greenwoodsoftware.com/less/
 BuildRequires: ncurses-devel
 BuildRequires: autoconf automake libtool
@@ -44,6 +47,7 @@ files, and you'll use it frequently.
 %patch10 -p1 -b .lesskey-usage
 %patch11 -p1 -b .old-bot
 %patch12 -p1 -b .hyperlinks
+%patch13 -p1 -b .memory-leak
 
 
 %build
@@ -67,6 +71,9 @@ install -p -m 644 %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 %{_mandir}/man1/*
 
 %changelog
+* Mon Jul 25 2022 Daan De Meyer <daan.j.demeyer@gmail.com> - 590-5
+- Backport patch from upstream to fix memory leak
+
 * Thu Jul 21 2022 Fedora Release Engineering <releng@fedoraproject.org> - 590-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
 
